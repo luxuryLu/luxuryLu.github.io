@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>No title | Joe的个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题 还记得刚开始接触前端的时候，那时候第一次看到 0.1 + 0.2 !== 0.3 的时候还是比较惊讶的，但那时候的我一心只想学习一些新技术、新框架，只想快速上手，自动地把这些问题归为底层的问题，便抛之脑后了。等到再一次碰到类似的问题，已经是几个月后了。 Number的存储 在讨论为什么 0.1 + 0.2 !== 0.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="No title">
+<meta property="og:url" content="http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/index.html">
+<meta property="og:site_name" content="Joe的个人博客">
+<meta property="og:description" content="从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题 还记得刚开始接触前端的时候，那时候第一次看到 0.1 + 0.2 !== 0.3 的时候还是比较惊讶的，但那时候的我一心只想学习一些新技术、新框架，只想快速上手，自动地把这些问题归为底层的问题，便抛之脑后了。等到再一次碰到类似的问题，已经是几个月后了。 Number的存储 在讨论为什么 0.1 + 0.2 !== 0.">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/7/76/General_double_precision_float.png">
+<meta property="og:updated_time" content="2018-10-13T07:26:26.924Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="No title">
+<meta name="twitter:description" content="从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题 还记得刚开始接触前端的时候，那时候第一次看到 0.1 + 0.2 !== 0.3 的时候还是比较惊讶的，但那时候的我一心只想学习一些新技术、新框架，只想快速上手，自动地把这些问题归为底层的问题，便抛之脑后了。等到再一次碰到类似的问题，已经是几个月后了。 Number的存储 在讨论为什么 0.1 + 0.2 !== 0.">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/7/76/General_double_precision_float.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Joe的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Joe Lu</h5>
+          <a href="mailto:790639771@qq.com" title="790639771@qq.com" class="mail">790639771@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/luxuryLu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">No title</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">No title</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-14T04:40:38.662Z" itemprop="datePublished" class="page-time">
+  2018-10-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#从-0-1-0-2-0-3-开始-谈谈JavaScript精度问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Number的存储"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Number的存储</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#回到-0-1-0-2"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">回到 0.1 + 0.2</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他语言的通病"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">其他语言的通病</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决问题案例"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">解决问题案例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考链接"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">参考链接</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">No title</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-14 12:40:38" datetime="2018-10-14T04:40:38.662Z"  itemprop="datePublished">2018-10-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="从-0-1-0-2-0-3-开始-谈谈JavaScript精度问题"><a href="#从-0-1-0-2-0-3-开始-谈谈JavaScript精度问题" class="headerlink" title="从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题"></a>从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题</h1><hr>
+<p>还记得刚开始接触前端的时候，那时候第一次看到 0.1 + 0.2 !== 0.3 的时候还是比较惊讶的，但那时候的我一心只想学习一些新技术、新框架，只想快速上手，自动地把这些问题归为底层的问题，便抛之脑后了。等到再一次碰到类似的问题，已经是几个月后了。<br><br></p>
+<h2 id="Number的存储"><a href="#Number的存储" class="headerlink" title="Number的存储"></a>Number的存储</h2><hr>
+<p>在讨论为什么 0.1 + 0.2 !== 0.3 之前，我们先来看看数字在JS中是怎么存储的吧。<br>我们都知道在JS中数字只有一种数据类型就是 Number， 而 Number 实际上是一种双精度浮点数的数据类型，遵循<a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format" target="_blank" rel="noopener">(IEEE - 754)</a>标准 ，用64bit进行存储。<br><br><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/General_double_precision_float.png" alt="双精度浮点数存储格式" title="">
+                </div>
+                <div class="image-caption">双精度浮点数存储格式</div>
+            </figure></p>
+<p>从左往右依次为<br>sign bit(符号): 用来表示正负号</p>
+<p>exponent(指数): 用来表示次方数</p>
+<p>mantissa(尾数): 用来表示精确度</p>
+<hr>
+<p>在我不了解它的数字表示之前，我考虑的是mantissa表示尾数，那么小数点应该存放在哪里，怎么存放？<br>后来，我才明白，小数点不用存，你可以把它看成小数点在尾数mantissa的最左边，即52bit和51bit之间，为什么会这样呢？</p>
+<blockquote>
+<p>事实上，为了最大限度提高精确度，可以要求尾数规格化，把尾数处理到大于等于1而小于2的区间内，便可省去前述的“1”</p>
+</blockquote>
+<p>相当于尾数mantissa部分左侧多了一个“1.”还不用占用空间。<br>比如尾数mantissa中存了52个1<br>那么尾数mantissa实际表示的值（二进制）即为1.11…111(小数点后52个1)<br>$$ mantissa = 1.11…111 $$<br>转换成十进制即<br>$$ mantissa = 1+ (1/2)^1 + (1/2)^2 + … + (1/2)^{51} + (1/2)^{52}  $$</p>
+<p>与此同时，我们正常理解指数部分应该为<br>$$ 2^{exponent} $$<br>exponent即为62bit到52位的正常二进制表示<br>但实际上我们的exponent 还有一个片偏移量<br>所以指数部分实际表示的值还要减去0x3ff<br>那么指数部分实际表示的值为<br>$$ 2^{exponent-0x3ff} $$</p>
+<p><strong>那么这64bit实际表示的数字为</strong><br>$$ (-1)^{sign} \times 1.mantissa \times 2^{exponent-0x3ff} $$<br><br></p>
+<h2 id="回到-0-1-0-2"><a href="#回到-0-1-0-2" class="headerlink" title="回到 0.1 + 0.2"></a>回到 0.1 + 0.2</h2><hr>
+<p>那么回到 0.1 + 0.2 这个问题上，我们看看0.1和0.2实际存储情况是怎么样的。<br>我们先看0.1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">0.1 * 2 = 0.2    //0</span><br><span class="line">0.2 * 2 = 0.4    //0</span><br><span class="line">0.4 * 2 = 0.8    //0</span><br><span class="line">0.8 * 2 = 1.6    //1</span><br><span class="line">0.6 * 2 = 1.2    //1</span><br><span class="line">0.2 * 2 = 0.4    //0</span><br><span class="line">0.4 * 2 = 0.8    //0</span><br><span class="line">0.8 * 2 = 1.6    //1</span><br><span class="line">0.6 * 2 = 1.2    //1</span><br><span class="line">0.2 * 2 = 0.4    //0</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br></pre></td></tr></table></figure></p>
+<p>你可以看到它是乘不完的，0011这四个数在循环，即0.1转换成二进制是无限循环的。<br>但是要知道，我们的尾数部分只有52位，多的部分只能截掉。<br>也就是说十进制的0.1在存储为双精度浮点数的时候会造成精度丢失。</p>
+<p><strong>而精度丢失丢失正是我们今天这个问题的原因所在</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 0.1 的存储形式</span><br><span class="line">0.00011001100110011001100110011001100110011001100110011010 </span><br><span class="line">// 0.2 的存储形式</span><br><span class="line">0.0011001100110011001100110011001100110011001100110011010 </span><br><span class="line">// 二进制相加的结果</span><br><span class="line">0.0100110011001100110011001100110011001100110011001100111</span><br><span class="line">// 转成十进制正好是 0.30000000000000004</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="其他语言的通病"><a href="#其他语言的通病" class="headerlink" title="其他语言的通病"></a>其他语言的通病</h2><hr>
+<p>事实上，这不是JS才有的问题，毕竟Number类型是按照IEEE - 754标准的双精度浮点数实现的，这个问题在所有按照标准实现的语言中都有可能出现。</p>
+<p>在我前一段时间写的项目中，我发现表格中一个金额显示为“30635.839999999997”，想了一会觉得应该是JavaScipt中Number丢失精度的问题。后来查看日志发现不是，而是Rails后端接口传过来的数据就是“30635.839999999997”，在后端进行double类型相加运算的时候，就已经出现了问题。<br>起码这已经能证明这个问题不是JavaScript的原因。</p>
+<h2 id="解决问题案例"><a href="#解决问题案例" class="headerlink" title="解决问题案例"></a>解决问题案例</h2><hr>
+<p>正如上面提到的那样，我之前的一个项目中，发现表格中一个金额显示为“30635.839999999997”，这个显示数据肯定不行的。发现之后，我一开始打算直接粗暴地给表格所有数据加上toFixed(2)完事，这样的修改是最不用动脑子的。<br>但是这样是行不通的，一个是我想要整数和一位小数只显示他们原来的样子。比如“500”就显示成“500”而不是”500.00”。另外toFixed()方法本身也有问题，不能正常地进行四舍五入。</p>
+<p>这里我使用了他人的一个方法(链接位于文末)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">数据展示类</span><br><span class="line">当你拿到 1.4000000000000001 这样的数据要展示时，建议使用 toPrecision 凑整并 parseFloat 转成数字后再显示，如下：</span><br><span class="line"></span><br><span class="line">parseFloat(1.4000000000000001.toPrecision(12)) === 1.4  // True</span><br><span class="line">封装成方法就是：</span><br><span class="line"></span><br><span class="line">function strip(num, precision = 12) &#123;</span><br><span class="line">  return +parseFloat(num.toPrecision(precision));</span><br><span class="line">&#125;</span><br><span class="line">为什么选择 12 做为默认精度？这是一个经验的选择，一般选12就能解决掉大部分0001和0009问题，而且大部分情况下也够用了，如果你需要更精确可以调高。</span><br></pre></td></tr></table></figure></p>
+<p>我在js需要处理相关数据的地方中调用这个函数，大体是能解决这个问题的。</p>
+<p>当然工作中碰到精度问题的情景不可能只有这一个，如果需要专业的解决方法，我们可以使用mathjs。</p>
+<p>不管怎么样，理解了0.1 + 0.2 !== 0.3的原因，起码以后遇到类似问题，就能快速定位到原因所在。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><hr>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%9B%99%E7%B2%BE%E5%BA%A6%E6%B5%AE%E9%BB%9E%E6%95%B8" target="_blank" rel="noopener">双精度浮点数 - 维基百科，自由的百科全书</a><br><a href="https://github.com/camsong/blog/issues/9" target="_blank" rel="noopener">JavaScript 浮点数陷阱及解法</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-10-13T07:26:26.924Z" itemprop="dateUpdated">2018-10-13 15:26:26</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/" target="_blank" rel="external">http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Joe Lu">
+            Joe Lu
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/&title=《No title》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/&title=《No title》 — Joe的个人博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — Joe的个人博客&url=http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Joe Lu &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/&title=《No title》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/&title=《No title》 — Joe的个人博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — Joe的个人博客&url=http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/14/从 0.1 + 0.2 !== 0.3 开始 谈谈JavaScript精度问题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLElEQVR42u3aS27jQAwFQN//0pltgIzlR1IG3HRpFSj6dPXmmaQej/j4+XM8++/vM3+vqd6VPO3ZXTcc2NjY2Iewfy6PZ6/JGb3tyJ98ff7ZarGxsbH3sa9j4+nNb4jD6l29CMTGxsb+ZnYSbNekfNHVCMTGxsbGzh93V6MneXL+BGxsbOxvZidNpeS4eXHjZtMNvTRsbGzsj2dPQuLT/n7LfBsbGxv7g9k/tx73NvHz5lR5ndjY2NiL2NWQyAcDefFQbVH1Pt/5z1uwsbGxV7DzTyrfETPJe/P2U6EgwcbGxl7KrjbuE0wPP8/kF9djY2NjL2VXAZOPfualSG9zCwmMjY2NfQh78rO+GiFJgZHXDknB86JYwsbGxl7BThYxLwB6jHygW45MbGxs7EXsXvAUfu4Hsdf7cGc+hMbGxsbewU7CIG829e7NN2LS8MLGxsbeyk4urQZMXiok5Ur+wVBSkBRm19jY2NgHsidtmmqwJe+thmJ5CIGNjY29jj0Zu+aBNylaetsajQewsbGxj2VXi4rqYGACrjaVCgNmbGxs7C9gP1pHPqDtDR56Q+hCgGFjY2Mfzq4OACbRUh0n5OuJCiRsbGzsdez5IpJiYALLz0eDB2xsbOxF7F7TfzRevWnAkAdkOcOxsbGxj2XnBUm1xTPfyt6qqsMMbGxs7BPZvWFtAqveOyl78kFyIWmxsbGxj2K/I2DyTcnHD/ldL6IOGxsbexG7N9xNipZ5U+mujYgmJNjY2NiHs3vN9GpDf/JhZV5sJEUONjY29iZ2Hg9Js37esZm/KwpUbGxs7EXs+bKqJUR1ZNsLs6gEwsbGxl7Bvg6qQjVTLBXmHwlVW07Y2NjYW9m9qEh+9Oev721xdYUv5iHY2NjYx7JHk+EiJgmwvCy5jklsbGzs72H3iorJ6LcXeL1hwKSIwsbGxj6L3WvW9JpBCWAyWsi3FRsbG3sfexIMSRmQL+t9w4nHvXmIjY2NfSA7H75OWj+TllZeCGFjY2N/J3vSZkrY1W0aDQCwsbGx17GrTaW8EV+OlvGsIzqPjY2NvYjdC7l5OPVaQne1nLCxsbFXsP8BW+OglPkuWMEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

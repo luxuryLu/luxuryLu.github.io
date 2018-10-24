@@ -21,17 +21,17 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="谈谈 事件标签（空格分隔）： JavaScript  最近在读红宝书，就是那本JavaScript高级程序设计。读到事件那一章，碰巧又看到一部分和事件有关的面试题，于是写下这篇文章当作自己的学习笔记。 事件流 在没有阅读相关文章之前，我都一直以为一个元素的onclick就只是对应这个元素的点击事件。红宝书中提出的问题就是 当你单击了某个元素时，是否也点击了它的父元素呢？当然，原文是用同心圆来做说明">
+    <meta name="description" content="谈谈 事件 最近在读红宝书，就是那本JavaScript高级程序设计。读到事件那一章，碰巧又看到一部分和事件有关的面试题，于是写下这篇文章当作自己的学习笔记。 事件流 在没有阅读相关文章之前，我都一直以为一个元素的onclick就只是对应这个元素的点击事件。红宝书中提出的问题就是 当你单击了某个元素时，是否也点击了它的父元素呢？当然，原文是用同心圆来做说明的。想象一张纸上有一组同心圆，当你把手放在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="谈谈 事件">
 <meta property="og:url" content="http://yoursite.com/2018/10/24/谈谈 事件/index.html">
 <meta property="og:site_name" content="Joe的个人博客">
-<meta property="og:description" content="谈谈 事件标签（空格分隔）： JavaScript  最近在读红宝书，就是那本JavaScript高级程序设计。读到事件那一章，碰巧又看到一部分和事件有关的面试题，于是写下这篇文章当作自己的学习笔记。 事件流 在没有阅读相关文章之前，我都一直以为一个元素的onclick就只是对应这个元素的点击事件。红宝书中提出的问题就是 当你单击了某个元素时，是否也点击了它的父元素呢？当然，原文是用同心圆来做说明">
+<meta property="og:description" content="谈谈 事件 最近在读红宝书，就是那本JavaScript高级程序设计。读到事件那一章，碰巧又看到一部分和事件有关的面试题，于是写下这篇文章当作自己的学习笔记。 事件流 在没有阅读相关文章之前，我都一直以为一个元素的onclick就只是对应这个元素的点击事件。红宝书中提出的问题就是 当你单击了某个元素时，是否也点击了它的父元素呢？当然，原文是用同心圆来做说明的。想象一张纸上有一组同心圆，当你把手放在">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-24T06:07:51.002Z">
+<meta property="og:updated_time" content="2018-10-24T06:16:21.749Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈 事件">
-<meta name="twitter:description" content="谈谈 事件标签（空格分隔）： JavaScript  最近在读红宝书，就是那本JavaScript高级程序设计。读到事件那一章，碰巧又看到一部分和事件有关的面试题，于是写下这篇文章当作自己的学习笔记。 事件流 在没有阅读相关文章之前，我都一直以为一个元素的onclick就只是对应这个元素的点击事件。红宝书中提出的问题就是 当你单击了某个元素时，是否也点击了它的父元素呢？当然，原文是用同心圆来做说明">
+<meta name="twitter:description" content="谈谈 事件 最近在读红宝书，就是那本JavaScript高级程序设计。读到事件那一章，碰巧又看到一部分和事件有关的面试题，于是写下这篇文章当作自己的学习笔记。 事件流 在没有阅读相关文章之前，我都一直以为一个元素的onclick就只是对应这个元素的点击事件。红宝书中提出的问题就是 当你单击了某个元素时，是否也点击了它的父元素呢？当然，原文是用同心圆来做说明的。想象一张纸上有一组同心圆，当你把手放在">
     
         <link rel="alternate" type="application/atom+xml" title="Joe的个人博客" href="/atom.xml">
     
@@ -195,8 +195,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="谈谈-事件"><a href="#谈谈-事件" class="headerlink" title="谈谈 事件"></a>谈谈 事件</h1><p>标签（空格分隔）： JavaScript</p>
-<hr>
+            <h1 id="谈谈-事件"><a href="#谈谈-事件" class="headerlink" title="谈谈 事件"></a>谈谈 事件</h1><hr>
 <p>最近在读红宝书，就是那本JavaScript高级程序设计。读到事件那一章，碰巧又看到一部分和事件有关的面试题，于是写下这篇文章当作自己的学习笔记。</p>
 <h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><hr>
 <p>在没有阅读相关文章之前，我都一直以为一个元素的onclick就只是对应这个元素的点击事件。红宝书中提出的问题就是 当你单击了某个元素时，是否也点击了它的父元素呢？<br>当然，原文是用同心圆来做说明的。想象一张纸上有一组同心圆，当你把手放在圆心时，手指指向的不是一个圆，而是纸上所有的圆。<br>事件流描述的是从页面接受事件的顺序。<br>IE事件流是事件冒泡，即从最具体的元素，逐级向上传播。<br>NetScape提出的事件流是事件捕获，即从不太具体的元素到具体的元素。<br>而 DOM2级事件 规定的事件流包括三个阶段： 事件捕获阶段，处于目标阶段和事件冒泡阶段。</p>
@@ -217,7 +216,7 @@ btn.addEventListener(&quot;click&quot;, function() {
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-24T06:07:51.002Z" itemprop="dateUpdated">2018-10-24 14:07:51</time>
+    Last updated: <time datetime="2018-10-24T06:16:21.749Z" itemprop="dateUpdated">2018-10-24 14:16:21</time>
 </span><br>
 
 

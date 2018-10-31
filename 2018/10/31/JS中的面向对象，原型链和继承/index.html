@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JS中的面向对象，原型链和继承 | Joe的个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="JS中的面向对象，原型链和继承 面向对象理解只是我自己目前的一些理解，以后也许会修改。面向对象是一种抽象方式。把现实生活中的物体看作一个个‘对象’，这样我们在写实际应用的时候，就可以将现实生活中的 概念/模型 映射到计算机领域的数据结构。具有类似属性一些物体我们就将它们归为一类，产生类的概念。而被归为一类的物体中，里面还有一些物体它们也有相似的地方，还可以抽象成一个类，这样就形成父类和子类，也就引">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中的面向对象，原型链和继承">
+<meta property="og:url" content="http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/index.html">
+<meta property="og:site_name" content="Joe的个人博客">
+<meta property="og:description" content="JS中的面向对象，原型链和继承 面向对象理解只是我自己目前的一些理解，以后也许会修改。面向对象是一种抽象方式。把现实生活中的物体看作一个个‘对象’，这样我们在写实际应用的时候，就可以将现实生活中的 概念/模型 映射到计算机领域的数据结构。具有类似属性一些物体我们就将它们归为一类，产生类的概念。而被归为一类的物体中，里面还有一些物体它们也有相似的地方，还可以抽象成一个类，这样就形成父类和子类，也就引">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-31T07:06:47.148Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS中的面向对象，原型链和继承">
+<meta name="twitter:description" content="JS中的面向对象，原型链和继承 面向对象理解只是我自己目前的一些理解，以后也许会修改。面向对象是一种抽象方式。把现实生活中的物体看作一个个‘对象’，这样我们在写实际应用的时候，就可以将现实生活中的 概念/模型 映射到计算机领域的数据结构。具有类似属性一些物体我们就将它们归为一类，产生类的概念。而被归为一类的物体中，里面还有一些物体它们也有相似的地方，还可以抽象成一个类，这样就形成父类和子类，也就引">
+    
+        <link rel="alternate" type="application/atom+xml" title="Joe的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Joe Lu</h5>
+          <a href="mailto:790639771@qq.com" title="790639771@qq.com" class="mail">790639771@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/luxuryLu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JS中的面向对象，原型链和继承</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JS中的面向对象，原型链和继承</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-31T07:06:04.192Z" itemprop="datePublished" class="page-time">
+  2018-10-31
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#JS中的面向对象，原型链和继承"><span class="post-toc-number">1.</span> <span class="post-toc-text">JS中的面向对象，原型链和继承</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#面向对象理解"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">面向对象理解</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#JS中的面向对象"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">JS中的面向对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建对象-封装"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">创建对象/封装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#构造函数"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">构造函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原型"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">原型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#继承"><span class="post-toc-number">1.0.6.</span> <span class="post-toc-text">继承</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#继承函数的封装"><span class="post-toc-number">1.0.7.</span> <span class="post-toc-text">继承函数的封装</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-JS中的面向对象，原型链和继承"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JS中的面向对象，原型链和继承</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-31 15:06:04" datetime="2018-10-31T07:06:04.192Z"  itemprop="datePublished">2018-10-31</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="JS中的面向对象，原型链和继承"><a href="#JS中的面向对象，原型链和继承" class="headerlink" title="JS中的面向对象，原型链和继承"></a>JS中的面向对象，原型链和继承</h1><hr>
+<h3 id="面向对象理解"><a href="#面向对象理解" class="headerlink" title="面向对象理解"></a>面向对象理解</h3><p>只是我自己目前的一些理解，以后也许会修改。<br>面向对象是一种抽象方式。把现实生活中的物体看作一个个‘对象’，这样我们在写实际应用的时候，就可以将现实生活中的 概念/模型 映射到计算机领域的数据结构。<br>具有类似属性一些物体我们就将它们归为一类，产生类的概念。<br>而被归为一类的物体中，里面还有一些物体它们也有相似的地方，还可以抽象成一个类，这样就形成父类和子类，也就引出了继承。</p>
+<h3 id="JS中的面向对象"><a href="#JS中的面向对象" class="headerlink" title="JS中的面向对象"></a>JS中的面向对象</h3><p>JS在ES6之前没有class的机制，ES6之后实现了class，当然它的本质也是语法糖，封装起来还是不错的。不过，我们作为一个学习者，还是要学习JS封装和继承的实际实现。<br>我推荐大家还是读一读《JavaScript 高级程序设计》中的 “面向对象的程序设计”那一章，讲的还是不错的。<br>我会挑我觉得比较经典的谈谈我的看法。</p>
+<h3 id="创建对象-封装"><a href="#创建对象-封装" class="headerlink" title="创建对象/封装"></a>创建对象/封装</h3><p>虽然ES6之前没有class,但是object本身就是js基本类型之一。<br>当然我们不可能每一次都用字面量或者Object()构造对象。所以我们引入了设计模式。像工厂模式，构造函数模式，原型模式，组合使用构造函数模式和原型模式，动态原型模式，寄生构造函数模式，稳妥构造模式。<br>我个人还是倾向组合使用构造函数和原型模式。不过在讲之前我们先来说一下构造函数和原型。</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span> (<span class="params">id, balance = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.id = id;</span><br><span class="line">    <span class="keyword">this</span>.balance = balance;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> user1 = <span class="keyword">new</span> User(<span class="number">1</span>, <span class="number">100</span>);  <span class="comment">//</span></span><br></pre></td></tr></table></figure>
+<p>像这样一个函数就是一个构造函数，它构造出来的对象 比如User1，检查 User1 instanceof User 返回为true。</p>
+<p>使用new创建对象的过程是怎样的呢，这有时也会作为面试题被问到</p>
+<ol>
+<li>new 新建一个空的Object</li>
+<li>将构造函数的作用域赋给新对象，改变this的指向</li>
+<li>执行构造函数</li>
+<li>返回修改后的对象</li>
+</ol>
+<h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><p>你看，我们都打算将一部分具有类似属性和方法的对象抽象出来了，那些类似的属性和方法总不能还由那些对象自己放着吧，那样多浪费内存啊。我们得将类似的属性和方法放到一个地方，这些对象都能访问到，所以prototype（原型）就出场了。</p>
+<p>prototype是每个函数都会有的属性，它指向一个Prototype对象，该原型对象也有一个constructor属性指向相应的函数。用构造函数构造出来的对象除了构造函数中添加的那些属性，还有一个[[prototype]]属性指向，构造函数的prototype。当我们查找一个对象的属性，比如在我们的user1中找一个叫name的属性，js引擎在user1对象上找不到呀，那怎么办呢？这时，js引擎就会到[[prototype]]指向的对象上找，如果找到了就返回，没找到呢？那就沿着这个原型的[[prototype]]继续往找，直到Object.prtotype为止。</p>
+<p>所以我们就把一些相似的属性或者方法放在prototype，如下图。<br>那为什么下面只有一些方法放在prototype里面了。这就是组合使用构造函数和原型模式。<br>我们不能把相同的方法放构造函数里面，这已经说过了，因为浪费内存。<br>但是属性呢？你想啊，虽然你们都有name这个属性，如果都放prototype里面，那你们不都成一个名字了？（当然，你可以手动给新构造的函数赋值来屏蔽原型中同名的属性，也可以在构造函数中赋值来屏蔽原型中的同名属性，不过何必呢，）所以除了本来就是共享一个值的属性，属性的赋值还是得放在构造函数里。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span> (<span class="params">id, name, balance = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.id = id;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.balance = balance;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">User.prototype = &#123;</span><br><span class="line">    <span class="keyword">constructor</span> : User,</span><br><span class="line">    saveMoney: function (amount) &#123;</span><br><span class="line">        <span class="keyword">this</span>.money += amount;</span><br><span class="line">    &#125;,</span><br><span class="line">    withdrawMoney: <span class="function"><span class="keyword">function</span> (<span class="params">amount</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.money -= amount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>JS主要通过原型链实现继承，其实如果理解了对象属性的查找就比较好理解原型链。就, 子类的prototype的[[prototype]]属性指向父类的prototype，就这样一直指指指，直到Object.prototype嘛。<br>J S高级程序设计中讲到的继承模式有许多，我认为比较经典的是组合继承和寄生组合是继承。<br>这里内容太多，不做细讲，推荐大家去看红宝书(再次安利)</p>
+<p>放一下我的例子吧<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function User (id, name, balance = 0) &#123;</span><br><span class="line">    this.id = id;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.balance = balance;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var User1 = new User(1, 100);</span><br><span class="line"></span><br><span class="line">User.prototype = &#123;</span><br><span class="line">    constructor : User,</span><br><span class="line">    saveMoney: function (amount) &#123;</span><br><span class="line">        this.money += amount;</span><br><span class="line">    &#125;,</span><br><span class="line">    withdrawMoney: function (amount) &#123;</span><br><span class="line">        this.money -= amount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function SuperUser (id, name, balance, vipTime) &#123;</span><br><span class="line">    User.call(this, id, name, balance);</span><br><span class="line">    this.vipTime = vipTime;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function F () &#123;&#125;</span><br><span class="line">F.prototype = User.prototype;</span><br><span class="line">SuperUser.prototype = new F();</span><br><span class="line">SuperUser.prototype.constructor = SuperUser;</span><br><span class="line">SuperUser.prototype.getDiscount = function () &#123;</span><br><span class="line">    console.log(&apos;get discount&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里子类的构造函数借用了父类的构造函数，<br>关于子类原型，先构造了一个空函数，然后将User.prototype 赋值给 F.prototype,然后将F函数创建的匿名对象赋值给子类的原型。因为子类的原型是由F函数构建的，所以constructor为F,我们不希望它这样，所以修正constructor属性，最后为子类的原型添上一些方法。</p>
+<p>（这里只是对上面代码的说明，如果看不懂，或者有一些疑问比如为什么不直接将父类的Prototype赋给子类的prototype，还是推荐看红宝书，因为本人水平有限可能将的不是特别的好，而且真要说清楚，篇幅还蛮长的）</p>
+<h3 id="继承函数的封装"><a href="#继承函数的封装" class="headerlink" title="继承函数的封装"></a>继承函数的封装</h3><p>红宝书中的寄生组合式继承 抽象出来的继承方法借用原型式中oject()函数，其实只是为了实现寄生组合式继承没必要再引入一个函数，用下面的函数也可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function inherits(Child, Parent) &#123;</span><br><span class="line">    function F() &#123;&#125;</span><br><span class="line">    F.prototype = Parent.prototype;</span><br><span class="line">    Child.prototype = new F();</span><br><span class="line">    Child.prototype.constructor = Child;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-10-31T07:06:47.148Z" itemprop="dateUpdated">2018-10-31 15:06:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/10/31/JS中的面向对象，原型链和继承/" target="_blank" rel="external">http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Joe Lu">
+            Joe Lu
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/&title=《JS中的面向对象，原型链和继承》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/&title=《JS中的面向对象，原型链和继承》 — Joe的个人博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS中的面向对象，原型链和继承》 — Joe的个人博客&url=http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/30/$(document).ready()和window.onload()的区别/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">$(document).ready()和window.onload()的区别</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Joe Lu &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/&title=《JS中的面向对象，原型链和继承》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/&title=《JS中的面向对象，原型链和继承》 — Joe的个人博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS中的面向对象，原型链和继承》 — Joe的个人博客&url=http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/31/JS中的面向对象，原型链和继承/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACpElEQVR42u3ay07cQBAF0Pn/n06krCIFzK0XTKTjFWIY26cX3cWter3i69ef6/k3/3769zX57mf3Wbvw8PDwWq/+fLvk0/zO80UpLAEeHh7eGe/5MKiSktd9vvP86Xh4eHjvwEteLtnoJ6U2Hh4e3v/Oy+9TLayTwwMPDw/vZ3l53JDHFnlpnhTi51kLHh4e3kEX6X1+Puzv4eHh4Q266r0oodcYS2Dlt8XDw8M74OUPyw+JpMzNt/u8UC78x4CHh4e3ypvEB0kU2ztI8uPhg/vg4eHhHfN6Tf1ku5+MXlWLeDw8PLxr3rwRtbaJB2V63oTDw8PDu+Ylm3ghPF2KM/JFbDbG8PDw8Fq86sOuX6sX7H76LTw8PLxVXl6YTsrcasQwiYbx8PDwvpOXs5PjoboQ1YMkijPw8PDwzniTojZfgt4yjUYW8PDw8M54Vcwk2O2V8nmhH517eHh4eKu8alHba+E/L1OvZP/gN3h4eHgHvOrYUy9OTSYXetFwFE/g4eHhHfCqzadJTFAtyifLgYeHh3fH623HeYiQkCZDV18sBx4eHt4xb1I6V1+iN2rwql54eHh4x7zdLT55bi+2yC14eHh4u7zqy1XD0+rCVUcNokwFDw8Pb5WXjC7lkW6vIO4NJRTCYjw8PLxVXv7l6ihV/nN+eFQjZjw8PLzv5E1aX9ViPd/u8yMBDw8P747XC0m3ek9JJDF/Ih4eHt4ub2u4KlmCeZOsXILj4eHhHfDmbf7qEuQHz7zZhoeHh3fHqzaxJiNZ+fFTHf8qzEfg4eHhLfHyhlbempqMDuRhxBd/j4eHh/ejvF6Dv7dkOQwPDw/v/XnVcGErfm0eQnh4eHhnvK0wopofV8cLynfAw8PDO+D1WvjVaLhXmi9Hunh4eHhT3m9egtB1bHRm0AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

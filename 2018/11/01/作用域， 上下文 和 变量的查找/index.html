@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Joe的个人博客">
 <meta property="og:description" content="作用域， 上下文 和 变量的查找 之前一直以为自己理解作用域链和上下文了，知道后来去看了别人的博客，才发现自己理解的很肤浅。作为一个笔记写下自己的理解吧。第一部分我会说一下 一个例子的执行过程，涉及到作用域链，上下文变量对象。第二部分我会说一下和作用域，上下文有关的面试中可能会问到的题目，当然只是我自己目前的理解。 一个例子的执行过程123456789var scope = &amp;quot;globa">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-06T17:11:08.296Z">
+<meta property="og:updated_time" content="2018-11-06T17:17:54.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="作用域， 上下文 和 变量的查找">
 <meta name="twitter:description" content="作用域， 上下文 和 变量的查找 之前一直以为自己理解作用域链和上下文了，知道后来去看了别人的博客，才发现自己理解的很肤浅。作为一个笔记写下自己的理解吧。第一部分我会说一下 一个例子的执行过程，涉及到作用域链，上下文变量对象。第二部分我会说一下和作用域，上下文有关的面试中可能会问到的题目，当然只是我自己目前的理解。 一个例子的执行过程123456789var scope = &amp;quot;globa">
@@ -132,7 +132,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -210,7 +210,7 @@
 <p>9.。。。然后就类似checkscope函数，。。。最后f函数上下文弹出上下文执行栈</p>
 <p>10.最后全局上下文弹出上下文执行栈。</p>
 <hr>
-<h3 id="与作用域上下文相关的题目"><a href="#与作用域上下文相关的题目" class="headerlink" title="与作用域上下文相关的题目"></a>与作用域上下文相关的题目</h3><p>1.什么是作用域？<br><del>作用域是代码定义变量的范围，它规定了代码如何查找变量</del>（不好理解，故删除）<br>作用域是 变量，函数 可(被)访问的范围<br>js中使用的是词法作用域（静态作用域），也就是说作用域在函数定义的时候就已经确定了<br>2.引擎怎樣找到一個變量<br>js引擎在执行代码前会做一个准备工作，会创建上下文环境。<br>上下文有三个重要的属性，一个是变量对象VO，一个是作用域链，一个是this<br>js引擎维护了一个上下文执行栈， 我们从当前执行上下文出发，沿着当前上下文的作用域链不断向上查找，直到查到全局上下文为止。<br>3.作用域和上下文的區別<br>作用域在函数定义的时候就已经确定了，<br>上下文要在函数调用执行阶段才确定。</p>
+<h3 id="与作用域上下文相关的题目"><a href="#与作用域上下文相关的题目" class="headerlink" title="与作用域上下文相关的题目"></a>与作用域上下文相关的题目</h3><p>1.什么是作用域？<br>作用域是 变量，函数 可(被)访问的范围<br>js中使用的是词法作用域（静态作用域），也就是说作用域在函数定义的时候就已经确定了<br>2.引擎怎樣找到一個變量<br>js引擎在执行代码前会做一个准备工作，会创建上下文环境。<br>上下文有三个重要的属性，一个是变量对象VO，一个是作用域链，一个是this<br>js引擎维护了一个上下文执行栈， 我们从当前执行上下文出发，沿着当前上下文的作用域链不断向上查找，直到查到全局上下文为止。<br>3.作用域和上下文的區別<br>作用域在函数定义的时候就已经确定了，<br>上下文要在函数调用执行阶段才确定。</p>
 <h3 id="extra"><a href="#extra" class="headerlink" title="extra"></a>extra</h3><p>我发现有时候想要深入了解一些原理，只靠一本书是不够的，还要翻阅多本书，多个文档。如果不好理解，还需要去看一下别人的博客，看看他们怎么理解。感谢前辈们的贡献</p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://github.com/mqyqingfeng/Blog/issues/4" target="_blank" rel="noopener">JavaScript深入之词法作用域和动态作用域</a><br><a href="https://github.com/mqyqingfeng/Blog/issues/8" target="_blank" rel="noopener">JavaScript深入之执行上下文</a></p>
 
@@ -221,7 +221,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2018-11-06T17:11:08.296Z" itemprop="dateUpdated">2018-11-07 01:11:08</time>
+    Last updated: <time datetime="2018-11-06T17:17:54.050Z" itemprop="dateUpdated">2018-11-07 01:17:54</time>
 </span><br>
 
 
@@ -389,7 +389,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

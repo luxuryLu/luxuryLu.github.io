@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-06T17:11:34.392Z</updated>
+  <updated>2018-12-06T14:04:22.892Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTTPS原理学习</title>
+    <link href="http://yoursite.com/2018/12/06/HTTPS%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2018/12/06/HTTPS原理学习/</id>
+    <published>2018-12-06T14:03:53.955Z</published>
+    <updated>2018-12-06T14:04:22.892Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="HTTPS原理学习"><a href="#HTTPS原理学习" class="headerlink" title="HTTPS原理学习"></a>HTTPS原理学习</h1><hr><p>因为HTTP是明文传输的，是不安全的，这才有了HTTPS。HTTPS是在TCP层上多了一个SSL/TLS层，也就是说HTTPS是在SSL/TLS层上的HTTP。</p><h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><hr><p>那么HTTPS是怎样做到安全传输信息的呢，首先讲一下对称加密。既然HTTP是明文传输，我们很自然地就想到进行加密。加密和解密使用同一个密钥的加密方式就是对称加密。<br>那么对称加密有什么问题呢，当我们的攻击者拿到了这个密钥，那么我们的加密对于他来说就是透明的。<br>所以我们的非对称加密这时就有用了。</p><h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><hr><p>那么什么是非对称加密，非对称加密是我们有一个公钥和私钥，它们为一对。公钥加密的信息只有私钥能解密。而私钥只保存在服务器，不向外传输。所以中间人即使拿到了信息和公钥，也没法对信息解密。</p><h3 id="非对称加密的问题"><a href="#非对称加密的问题" class="headerlink" title="非对称加密的问题"></a>非对称加密的问题</h3><hr><p>但是，非对称加密还有一个问题，就是服务器在传输公钥的时候，被中间人篡改，给替换成中间人自己的公钥。那么客户端以为这是服务器的公钥，就用这个公钥进行加密，而中间人则用他自己的私钥进行解密，还可以对解密后的信息使用真正服务器的公钥进行加密</p><h3 id="CA和证书"><a href="#CA和证书" class="headerlink" title="CA和证书"></a>CA和证书</h3><hr><p>那么我们就要解决非对称加密的公钥被篡改这个问题。HTTPS中使用了数字证书和数字签名去解决这个问题。我们需要到权威的CA去进行进行申请，CA验证通过了，就会将我们服务器这边的公钥和相关信息使用CA的私钥加密生成数字签名，数字证书中包括我们的公钥，信息以及数字签名。这样如果中间人篡改了公钥，我们在对数字签名进行解密之后，就会发现数据不匹配。当然中间人也可以把公钥，信息和数字签名都换成自己的，但是这样虽然信息匹配了，但是客户端即浏览器就会发现这不是我们想要访问的节点了。<br>还有一点就是CA的公钥一般是预置在浏览器的。不然这个问题就变成鸡生蛋，蛋生鸡的问题了。<br>正如那句话所说，“难的不是加密，而是密钥的保管。”</p><h3 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h3><hr><p>希望这篇文章对你有帮助，可能有图会更好理解，以后我应该会去试着使用一些图床。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;HTTPS原理学习&quot;&gt;&lt;a href=&quot;#HTTPS原理学习&quot; class=&quot;headerlink&quot; title=&quot;HTTPS原理学习&quot;&gt;&lt;/a&gt;HTTPS原理学习&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;因为HTTP是明文传输的，是不安全的，这才有了HTTPS。HTTPS是在T
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>再谈作用域</title>

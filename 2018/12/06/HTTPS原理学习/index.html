@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>HTTPS原理学习 | Joe的个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="HTTPS原理学习 因为HTTP是明文传输的，是不安全的，这才有了HTTPS。HTTPS是在TCP层上多了一个SSL/TLS层，也就是说HTTPS是在SSL/TLS层上的HTTP。 对称加密 那么HTTPS是怎样做到安全传输信息的呢，首先讲一下对称加密。既然HTTP是明文传输，我们很自然地就想到进行加密。加密和解密使用同一个密钥的加密方式就是对称加密。那么对称加密有什么问题呢，当我们的攻击者拿到了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTPS原理学习">
+<meta property="og:url" content="http://yoursite.com/2018/12/06/HTTPS原理学习/index.html">
+<meta property="og:site_name" content="Joe的个人博客">
+<meta property="og:description" content="HTTPS原理学习 因为HTTP是明文传输的，是不安全的，这才有了HTTPS。HTTPS是在TCP层上多了一个SSL/TLS层，也就是说HTTPS是在SSL/TLS层上的HTTP。 对称加密 那么HTTPS是怎样做到安全传输信息的呢，首先讲一下对称加密。既然HTTP是明文传输，我们很自然地就想到进行加密。加密和解密使用同一个密钥的加密方式就是对称加密。那么对称加密有什么问题呢，当我们的攻击者拿到了">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-06T14:04:22.892Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTPS原理学习">
+<meta name="twitter:description" content="HTTPS原理学习 因为HTTP是明文传输的，是不安全的，这才有了HTTPS。HTTPS是在TCP层上多了一个SSL/TLS层，也就是说HTTPS是在SSL/TLS层上的HTTP。 对称加密 那么HTTPS是怎样做到安全传输信息的呢，首先讲一下对称加密。既然HTTP是明文传输，我们很自然地就想到进行加密。加密和解密使用同一个密钥的加密方式就是对称加密。那么对称加密有什么问题呢，当我们的攻击者拿到了">
+    
+        <link rel="alternate" type="application/atom+xml" title="Joe的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Joe Lu</h5>
+          <a href="mailto:790639771@qq.com" title="790639771@qq.com" class="mail">790639771@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/luxuryLu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HTTPS原理学习</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HTTPS原理学习</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-06T14:03:53.955Z" itemprop="datePublished" class="page-time">
+  2018-12-06
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#HTTPS原理学习"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTTPS原理学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对称加密"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">对称加密</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#非对称加密"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">非对称加密</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#非对称加密的问题"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">非对称加密的问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CA和证书"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">CA和证书</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PS"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">PS</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-HTTPS原理学习"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HTTPS原理学习</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-06 22:03:53" datetime="2018-12-06T14:03:53.955Z"  itemprop="datePublished">2018-12-06</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="HTTPS原理学习"><a href="#HTTPS原理学习" class="headerlink" title="HTTPS原理学习"></a>HTTPS原理学习</h1><hr>
+<p>因为HTTP是明文传输的，是不安全的，这才有了HTTPS。HTTPS是在TCP层上多了一个SSL/TLS层，也就是说HTTPS是在SSL/TLS层上的HTTP。</p>
+<h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><hr>
+<p>那么HTTPS是怎样做到安全传输信息的呢，首先讲一下对称加密。既然HTTP是明文传输，我们很自然地就想到进行加密。加密和解密使用同一个密钥的加密方式就是对称加密。<br>那么对称加密有什么问题呢，当我们的攻击者拿到了这个密钥，那么我们的加密对于他来说就是透明的。<br>所以我们的非对称加密这时就有用了。</p>
+<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><hr>
+<p>那么什么是非对称加密，非对称加密是我们有一个公钥和私钥，它们为一对。公钥加密的信息只有私钥能解密。而私钥只保存在服务器，不向外传输。所以中间人即使拿到了信息和公钥，也没法对信息解密。</p>
+<h3 id="非对称加密的问题"><a href="#非对称加密的问题" class="headerlink" title="非对称加密的问题"></a>非对称加密的问题</h3><hr>
+<p>但是，非对称加密还有一个问题，就是服务器在传输公钥的时候，被中间人篡改，给替换成中间人自己的公钥。那么客户端以为这是服务器的公钥，就用这个公钥进行加密，而中间人则用他自己的私钥进行解密，还可以对解密后的信息使用真正服务器的公钥进行加密</p>
+<h3 id="CA和证书"><a href="#CA和证书" class="headerlink" title="CA和证书"></a>CA和证书</h3><hr>
+<p>那么我们就要解决非对称加密的公钥被篡改这个问题。HTTPS中使用了数字证书和数字签名去解决这个问题。我们需要到权威的CA去进行进行申请，CA验证通过了，就会将我们服务器这边的公钥和相关信息使用CA的私钥加密生成数字签名，数字证书中包括我们的公钥，信息以及数字签名。这样如果中间人篡改了公钥，我们在对数字签名进行解密之后，就会发现数据不匹配。当然中间人也可以把公钥，信息和数字签名都换成自己的，但是这样虽然信息匹配了，但是客户端即浏览器就会发现这不是我们想要访问的节点了。<br>还有一点就是CA的公钥一般是预置在浏览器的。不然这个问题就变成鸡生蛋，蛋生鸡的问题了。<br>正如那句话所说，“难的不是加密，而是密钥的保管。”</p>
+<h3 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h3><hr>
+<p>希望这篇文章对你有帮助，可能有图会更好理解，以后我应该会去试着使用一些图床。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-12-06T14:04:22.892Z" itemprop="dateUpdated">2018-12-06 22:04:22</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/06/HTTPS原理学习/" target="_blank" rel="external">http://yoursite.com/2018/12/06/HTTPS原理学习/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Joe Lu">
+            Joe Lu
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/06/HTTPS原理学习/&title=《HTTPS原理学习》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/06/HTTPS原理学习/&title=《HTTPS原理学习》 — Joe的个人博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/06/HTTPS原理学习/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTPS原理学习》 — Joe的个人博客&url=http://yoursite.com/2018/12/06/HTTPS原理学习/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/06/HTTPS原理学习/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/07/再谈作用域/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">再谈作用域</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Joe Lu &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/06/HTTPS原理学习/&title=《HTTPS原理学习》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/06/HTTPS原理学习/&title=《HTTPS原理学习》 — Joe的个人博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/06/HTTPS原理学习/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTPS原理学习》 — Joe的个人博客&url=http://yoursite.com/2018/12/06/HTTPS原理学习/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/06/HTTPS原理学习/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aQW7DMAwEwPz/0ynQaxpnSSkFTI1PhZvamhxYrqjHI76ev9frnb33331m24WBgXFbxvPyul5E8oRkoa/vyteGgYFxDuO6yFZffE1dee/b+xgYGBhB07ZScFeoGBgYGEkErRbiXeUbAwPjNEYSYnsNXC8SfzGLY2Bg3JBRHQz8589fnG9gYGDchPFcvvYOL5thGAMDYzQjacV6C+0tMXlalMUxMDAGMXYdg9gVbpuNKQYGxmhG8mfJoLFXdlc216Kgi4GBMYLRi47Voeb6IbAPxRoDA+MARnVMmLSDeXztDT6jEIuBgTGIkbd31cZxfbQQFXQMDIwDGCvbXnlA3fucD/83MDAwBjGarVir7OaLbg4VMDAwRjN644HqwCAPw9X7GBgYsxn5YazqIYyVAxl5hMbAwDiHsb7t1RtDVqNylMUxMDDGMaoNX6+YVocKvfVgYGCcxsjLXG8brkeqfikYGBgzGNcfrW7irx8pSxZdPhaGgYFxc0Z1Kb0NuN4xi+rXgYGBMZXRO2y6fiz1+n7eUP4xGMDAwBjHyENsbyMsGUDmO39LwwAMDIzbMnoFNwmZ+aGKvAF9uyoMDIzRjGoJrv62umHXC8MYGBgnMNaD68rSewV3qTPFwMC4LSPfxM/jaP6EarSO5rEYGBjHM/KDF7s2475ScDEwMMYx8phabfLyrwwDA+NkRh5id23f90LyWxIGBsZoRnUwkAfRXvPXa1IxMDCGMn4AM0MUGT5JGq0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

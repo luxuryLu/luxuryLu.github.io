@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-12-06T14:04:22.892Z</updated>
+  <updated>2018-12-07T07:17:20.131Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TLS握手过程</title>
+    <link href="http://yoursite.com/2018/12/07/TLS%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B/"/>
+    <id>http://yoursite.com/2018/12/07/TLS握手过程/</id>
+    <published>2018-12-07T07:16:21.302Z</published>
+    <updated>2018-12-07T07:17:20.131Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="TLS握手过程"><a href="#TLS握手过程" class="headerlink" title="TLS握手过程"></a>TLS握手过程</h1><hr><p>之前讲了HTTPS原理，那么这次讲一下TLS握手过程。</p><p>首先客户端向服务器端发送一个Client Hello，包括一个随机数，客户端支持的加密套件以及SSL版本号等信息。</p><p>服务器端收到Client Hello后，发送一个Server Hello消息，服务器端会同样生成一个随机数，同时服务器端会在客户端支持的加密套件中选择一个加密套件。同时服务器会发送他的数字证书。</p><p>客户端收到Server Hello之后，对证书进行验证。验证信息正确之后，会生成第三个随机数并使用服务器端的公钥加密，作为预主密钥。（双方使用这三个随机数和加密套件生成主密钥）并且告诉服务器端这边已经切换到之前商量好的加密套件，最后会发送一段Finish消息给服务器端</p><p>服务器端最后会有个回应告诉客户端，这边已经切换到之前商量好的加密套件，并发送一个Finish消息。</p><p>之后双方就可以使用主密钥正常的传输了。</p><p>当然还有一些False Start（抢跑）和 通过Session ID恢复连接，就不细讲了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;TLS握手过程&quot;&gt;&lt;a href=&quot;#TLS握手过程&quot; class=&quot;headerlink&quot; title=&quot;TLS握手过程&quot;&gt;&lt;/a&gt;TLS握手过程&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;之前讲了HTTPS原理，那么这次讲一下TLS握手过程。&lt;/p&gt;
+&lt;p&gt;首先客户端向服务器端
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>HTTPS原理学习</title>

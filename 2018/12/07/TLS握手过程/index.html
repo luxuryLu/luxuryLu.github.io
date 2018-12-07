@@ -14,24 +14,24 @@
     
     
     
-    <title>HTTPS原理学习 | Joe的个人博客</title>
+    <title>TLS握手过程 | Joe的个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="HTTPS原理学习 因为HTTP是明文传输的，是不安全的，这才有了HTTPS。HTTPS是在TCP层上多了一个SSL/TLS层，也就是说HTTPS是在SSL/TLS层上的HTTP。 对称加密 那么HTTPS是怎样做到安全传输信息的呢，首先讲一下对称加密。既然HTTP是明文传输，我们很自然地就想到进行加密。加密和解密使用同一个密钥的加密方式就是对称加密。那么对称加密有什么问题呢，当我们的攻击者拿到了">
+    <meta name="description" content="TLS握手过程 之前讲了HTTPS原理，那么这次讲一下TLS握手过程。 首先客户端向服务器端发送一个Client Hello，包括一个随机数，客户端支持的加密套件以及SSL版本号等信息。 服务器端收到Client Hello后，发送一个Server Hello消息，服务器端会同样生成一个随机数，同时服务器端会在客户端支持的加密套件中选择一个加密套件。同时服务器会发送他的数字证书。 客户端收到Ser">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTTPS原理学习">
-<meta property="og:url" content="http://yoursite.com/2018/12/06/HTTPS原理学习/index.html">
+<meta property="og:title" content="TLS握手过程">
+<meta property="og:url" content="http://yoursite.com/2018/12/07/TLS握手过程/index.html">
 <meta property="og:site_name" content="Joe的个人博客">
-<meta property="og:description" content="HTTPS原理学习 因为HTTP是明文传输的，是不安全的，这才有了HTTPS。HTTPS是在TCP层上多了一个SSL/TLS层，也就是说HTTPS是在SSL/TLS层上的HTTP。 对称加密 那么HTTPS是怎样做到安全传输信息的呢，首先讲一下对称加密。既然HTTP是明文传输，我们很自然地就想到进行加密。加密和解密使用同一个密钥的加密方式就是对称加密。那么对称加密有什么问题呢，当我们的攻击者拿到了">
+<meta property="og:description" content="TLS握手过程 之前讲了HTTPS原理，那么这次讲一下TLS握手过程。 首先客户端向服务器端发送一个Client Hello，包括一个随机数，客户端支持的加密套件以及SSL版本号等信息。 服务器端收到Client Hello后，发送一个Server Hello消息，服务器端会同样生成一个随机数，同时服务器端会在客户端支持的加密套件中选择一个加密套件。同时服务器会发送他的数字证书。 客户端收到Ser">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-06T14:04:22.892Z">
+<meta property="og:updated_time" content="2018-12-07T07:17:20.131Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTTPS原理学习">
-<meta name="twitter:description" content="HTTPS原理学习 因为HTTP是明文传输的，是不安全的，这才有了HTTPS。HTTPS是在TCP层上多了一个SSL/TLS层，也就是说HTTPS是在SSL/TLS层上的HTTP。 对称加密 那么HTTPS是怎样做到安全传输信息的呢，首先讲一下对称加密。既然HTTP是明文传输，我们很自然地就想到进行加密。加密和解密使用同一个密钥的加密方式就是对称加密。那么对称加密有什么问题呢，当我们的攻击者拿到了">
+<meta name="twitter:title" content="TLS握手过程">
+<meta name="twitter:description" content="TLS握手过程 之前讲了HTTPS原理，那么这次讲一下TLS握手过程。 首先客户端向服务器端发送一个Client Hello，包括一个随机数，客户端支持的加密套件以及SSL版本号等信息。 服务器端收到Client Hello后，发送一个Server Hello消息，服务器端会同样生成一个随机数，同时服务器端会在客户端支持的加密套件中选择一个加密套件。同时服务器会发送他的数字证书。 客户端收到Ser">
     
         <link rel="alternate" type="application/atom+xml" title="Joe的个人博客" href="/atom.xml">
     
@@ -126,7 +126,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">HTTPS原理学习</div>
+        <div class="flex-col header-title ellipsis">TLS握手过程</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -148,11 +148,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">HTTPS原理学习</h1>
+        <h1 class="title">TLS握手过程</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-12-06T14:03:53.955Z" itemprop="datePublished" class="page-time">
-  2018-12-06
+                <time datetime="2018-12-07T07:16:21.302Z" itemprop="datePublished" class="page-time">
+  2018-12-07
 </time>
 
 
@@ -171,18 +171,18 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#HTTPS原理学习"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTTPS原理学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对称加密"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">对称加密</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#非对称加密"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">非对称加密</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#非对称加密的问题"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">非对称加密的问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CA和证书"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">CA和证书</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PS"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">PS</span></a></li></ol></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#TLS握手过程"><span class="post-toc-number">1.</span> <span class="post-toc-text">TLS握手过程</span></a></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-HTTPS原理学习"
+<article id="post-TLS握手过程"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">HTTPS原理学习</h1>
+        <h1 class="post-card-title">TLS握手过程</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-12-06 22:03:53" datetime="2018-12-06T14:03:53.955Z"  itemprop="datePublished">2018-12-06</time>
+            <time class="post-time" title="2018-12-07 15:16:21" datetime="2018-12-07T07:16:21.302Z"  itemprop="datePublished">2018-12-07</time>
 
             
 
@@ -195,18 +195,14 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="HTTPS原理学习"><a href="#HTTPS原理学习" class="headerlink" title="HTTPS原理学习"></a>HTTPS原理学习</h1><hr>
-<p>因为HTTP是明文传输的，是不安全的，这才有了HTTPS。HTTPS是在TCP层上多了一个SSL/TLS层，也就是说HTTPS是在SSL/TLS层上的HTTP。</p>
-<h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><hr>
-<p>那么HTTPS是怎样做到安全传输信息的呢，首先讲一下对称加密。既然HTTP是明文传输，我们很自然地就想到进行加密。加密和解密使用同一个密钥的加密方式就是对称加密。<br>那么对称加密有什么问题呢，当我们的攻击者拿到了这个密钥，那么我们的加密对于他来说就是透明的。<br>所以我们的非对称加密这时就有用了。</p>
-<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><hr>
-<p>那么什么是非对称加密，非对称加密是我们有一个公钥和私钥，它们为一对。公钥加密的信息只有私钥能解密。而私钥只保存在服务器，不向外传输。所以中间人即使拿到了信息和公钥，也没法对信息解密。</p>
-<h3 id="非对称加密的问题"><a href="#非对称加密的问题" class="headerlink" title="非对称加密的问题"></a>非对称加密的问题</h3><hr>
-<p>但是，非对称加密还有一个问题，就是服务器在传输公钥的时候，被中间人篡改，给替换成中间人自己的公钥。那么客户端以为这是服务器的公钥，就用这个公钥进行加密，而中间人则用他自己的私钥进行解密，还可以对解密后的信息使用真正服务器的公钥进行加密</p>
-<h3 id="CA和证书"><a href="#CA和证书" class="headerlink" title="CA和证书"></a>CA和证书</h3><hr>
-<p>那么我们就要解决非对称加密的公钥被篡改这个问题。HTTPS中使用了数字证书和数字签名去解决这个问题。我们需要到权威的CA去进行进行申请，CA验证通过了，就会将我们服务器这边的公钥和相关信息使用CA的私钥加密生成数字签名，数字证书中包括我们的公钥，信息以及数字签名。这样如果中间人篡改了公钥，我们在对数字签名进行解密之后，就会发现数据不匹配。当然中间人也可以把公钥，信息和数字签名都换成自己的，但是这样虽然信息匹配了，但是客户端即浏览器就会发现这不是我们想要访问的节点了。<br>还有一点就是CA的公钥一般是预置在浏览器的。不然这个问题就变成鸡生蛋，蛋生鸡的问题了。<br>正如那句话所说，“难的不是加密，而是密钥的保管。”</p>
-<h3 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h3><hr>
-<p>希望这篇文章对你有帮助，可能有图会更好理解，以后我应该会去试着使用一些图床。</p>
+            <h1 id="TLS握手过程"><a href="#TLS握手过程" class="headerlink" title="TLS握手过程"></a>TLS握手过程</h1><hr>
+<p>之前讲了HTTPS原理，那么这次讲一下TLS握手过程。</p>
+<p>首先客户端向服务器端发送一个Client Hello，包括一个随机数，客户端支持的加密套件以及SSL版本号等信息。</p>
+<p>服务器端收到Client Hello后，发送一个Server Hello消息，服务器端会同样生成一个随机数，同时服务器端会在客户端支持的加密套件中选择一个加密套件。同时服务器会发送他的数字证书。</p>
+<p>客户端收到Server Hello之后，对证书进行验证。验证信息正确之后，会生成第三个随机数并使用服务器端的公钥加密，作为预主密钥。（双方使用这三个随机数和加密套件生成主密钥）并且告诉服务器端这边已经切换到之前商量好的加密套件，最后会发送一段Finish消息给服务器端</p>
+<p>服务器端最后会有个回应告诉客户端，这边已经切换到之前商量好的加密套件，并发送一个Finish消息。</p>
+<p>之后双方就可以使用主密钥正常的传输了。</p>
+<p>当然还有一些False Start（抢跑）和 通过Session ID恢复连接，就不细讲了。</p>
 
         </div>
 
@@ -215,12 +211,12 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-12-06T14:04:22.892Z" itemprop="dateUpdated">2018-12-06 22:04:22</time>
+    Last updated: <time datetime="2018-12-07T07:17:20.131Z" itemprop="dateUpdated">2018-12-07 15:17:20</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/06/HTTPS原理学习/" target="_blank" rel="external">http://yoursite.com/2018/12/06/HTTPS原理学习/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/07/TLS握手过程/" target="_blank" rel="external">http://yoursite.com/2018/12/07/TLS握手过程/</a>
         
     </div>
     
@@ -249,7 +245,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/06/HTTPS原理学习/&title=《HTTPS原理学习》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/07/TLS握手过程/&title=《TLS握手过程》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -259,22 +255,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/06/HTTPS原理学习/&title=《HTTPS原理学习》 — Joe的个人博客&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/07/TLS握手过程/&title=《TLS握手过程》 — Joe的个人博客&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/06/HTTPS原理学习/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/07/TLS握手过程/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTPS原理学习》 — Joe的个人博客&url=http://yoursite.com/2018/12/06/HTTPS原理学习/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《TLS握手过程》 — Joe的个人博客&url=http://yoursite.com/2018/12/07/TLS握手过程/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/06/HTTPS原理学习/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/07/TLS握手过程/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -294,21 +290,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2018/12/07/TLS握手过程/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">TLS握手过程</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/11/07/再谈作用域/" id="post-next" class="post-nav-link">
+      <a href="/2018/12/06/HTTPS原理学习/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">再谈作用域</h4>
+        <h4 class="title">HTTPS原理学习</h4>
       </a>
     </div>
   
@@ -405,7 +394,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/06/HTTPS原理学习/&title=《HTTPS原理学习》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/07/TLS握手过程/&title=《TLS握手过程》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -415,22 +404,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/06/HTTPS原理学习/&title=《HTTPS原理学习》 — Joe的个人博客&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/07/TLS握手过程/&title=《TLS握手过程》 — Joe的个人博客&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/06/HTTPS原理学习/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/07/TLS握手过程/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTPS原理学习》 — Joe的个人博客&url=http://yoursite.com/2018/12/06/HTTPS原理学习/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《TLS握手过程》 — Joe的个人博客&url=http://yoursite.com/2018/12/07/TLS握手过程/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/06/HTTPS原理学习/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/07/TLS握手过程/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -441,7 +430,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aQW7DMAwEwPz/0ynQaxpnSSkFTI1PhZvamhxYrqjHI76ev9frnb33331m24WBgXFbxvPyul5E8oRkoa/vyteGgYFxDuO6yFZffE1dee/b+xgYGBhB07ZScFeoGBgYGEkErRbiXeUbAwPjNEYSYnsNXC8SfzGLY2Bg3JBRHQz8589fnG9gYGDchPFcvvYOL5thGAMDYzQjacV6C+0tMXlalMUxMDAGMXYdg9gVbpuNKQYGxmhG8mfJoLFXdlc216Kgi4GBMYLRi47Voeb6IbAPxRoDA+MARnVMmLSDeXztDT6jEIuBgTGIkbd31cZxfbQQFXQMDIwDGCvbXnlA3fucD/83MDAwBjGarVir7OaLbg4VMDAwRjN644HqwCAPw9X7GBgYsxn5YazqIYyVAxl5hMbAwDiHsb7t1RtDVqNylMUxMDDGMaoNX6+YVocKvfVgYGCcxsjLXG8brkeqfikYGBgzGNcfrW7irx8pSxZdPhaGgYFxc0Z1Kb0NuN4xi+rXgYGBMZXRO2y6fiz1+n7eUP4xGMDAwBjHyENsbyMsGUDmO39LwwAMDIzbMnoFNwmZ+aGKvAF9uyoMDIzRjGoJrv62umHXC8MYGBgnMNaD68rSewV3qTPFwMC4LSPfxM/jaP6EarSO5rEYGBjHM/KDF7s2475ScDEwMMYx8phabfLyrwwDA+NkRh5id23f90LyWxIGBsZoRnUwkAfRXvPXa1IxMDCGMn4AM0MUGT5JGq0AAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3ay46bQBAFUP//TztSVpMF5N4uOxHdh9UIM8BhUarX6xUf79/H/Zmf56+u/3n+fXu8vnFgYGA8lpHcrr118lr5cyMqBgbGAYz7INuG18lnyp+LgYGBcRX41n5de0UMDAyMtdvlZWqSLOafAAMDA6MtJufNu/9Wi2NgYDyQ0Q4G/uXfX5xvYGBgPITxHh/tsHMSXi//FwMDY2tG3txvX+u+0E3SzXqMioGBsTUjf+lJGpdc+cU8FwMD47GMT6V994+fN9cwMDAwct5aA64daubLHH/U4hgYGFszJoXl2lJFfp/o42JgYGzNyPOrpLBslzPytLII5RgYGNsx7oPjHNkG1vwpGBgY5zAmg8kkdcvPt8ODyysxMDAOYExGAm3yN2dcBlwMDIyNGO0AYLJU0Y45R0UsBgbGRox8GJmnkmt7XJMBJwYGxpmMdqrQvko7MKgjPQYGxkaMyXCxLTvzD5GviBXbbRgYGI9lzBttbdM/Z9TDUQwMjAMYeRhdbIctpaTF8AADA+MARr5CsbY0Nk8ZMTAwTmasNevbxLEoR8vRAgYGxt6Md3m0oTApPueLFxgYGHszJmPOfORZtMw+WiRjYGDsxMgb/fP1i/zXPDRjYGCcw1gLskkS+anE7i8wDAwMjLKYbFts7UrHZb8QAwPjeMbasle+NJakm8XOCAYGxnaMpIhtE8HJaCHBY2BgnMOYDAbWVrjWGnz5R8TAwNiI8QuS4dsZZzzMmQAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 

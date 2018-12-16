@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-12-07T07:17:20.131Z</updated>
+  <updated>2018-12-16T14:17:03.493Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>浅谈XSS和CSRF</title>
+    <link href="http://yoursite.com/2018/12/16/%E6%B5%85%E8%B0%88XSS%E5%92%8CCSRF/"/>
+    <id>http://yoursite.com/2018/12/16/浅谈XSS和CSRF/</id>
+    <published>2018-12-16T14:16:32.621Z</published>
+    <updated>2018-12-16T14:17:03.493Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="浅谈XSS和CSRF"><a href="#浅谈XSS和CSRF" class="headerlink" title="浅谈XSS和CSRF"></a>浅谈XSS和CSRF</h1><hr><p>XSS和CSRF是前端比较常见的两种攻击方式，我们作为一个学习者，也需要对这两种攻击方式有所了解</p><h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><hr><p>XSS，即跨域脚本攻击，全称Cross Site Scripting。<br>XSS主要分为两种类型。一种是反射型，一种是存储型。<br>比较经典的例子呢，就是评论区。<br>比如说某个站点没有对用户输入的内容进行过滤。那么我们就可以评论 像<code>&lt;script&gt;&lt;/script&gt;</code>这样的文本，中间插入我们攻击的脚本。当然我们也可以评论一个图片<code>&lt;img src=&#39;null&#39; onerror=&quot;这里插入我们攻击的脚本&quot;&gt;</code>。<br>这样所有访问这个页面（带有评论的页面）的用户，都会执行我们的攻击脚本。</p><h4 id="预防方式"><a href="#预防方式" class="headerlink" title="预防方式"></a>预防方式</h4><p>那么我们要怎么预防XSS攻击呢？<br>首先是对用户输入的内容进行转义，就是像单双引号，尖括号这样的内容进行转义。那么浏览器就不会对相应的脚本自动执行。<br>前端也可以进行反转义，并且过滤一些标签或者属性。像script标签，以及像src,onclick这些属性。<br>我们也可以使用CSP，即Content-Security-Policy,csp可以再HTTP Header种进行设置。我们可以限制比如说，只允许加载本站的资源，或者只允许进行访问HTTPs的图片。</p><h3 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h3><hr><p>CSRF,即跨站请求伪造，全称Cross-Site-Request-forgery。<br>CSRF攻击是怎么实现的呢?<br>比如说我们访问了一个a站点，登录之后，a站点给我们设置了相应的cookie。这时我们不小心访问了一个攻击用的钓鱼网站，网站中一有一个img标签，它的src就是我们a站点的一个接口。那么我们就会访问这个接口，同时把cookie也发送出去。服务器端验证了cookie,就执行了相应的接口。</p><h4 id="预防方式-1"><a href="#预防方式-1" class="headerlink" title="预防方式"></a>预防方式</h4><p>CSRF要怎么预防呢？<br>一种是采用Token验证，就是说，我们网站对用户身份的验证不能光靠cookie.同时也会带有一个Token.如果站点验证Token不正确或者没有Token,那么就拒绝这次请求。<br>还有一种是referer验证，通过http中的referer头，验证http请求的来源，如果不是从本站发起的请求，那么就拒绝它。<br>其实除此之外还可以，通过每次调用接口，都要输入验证码这种方式，这里就不细讲了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;浅谈XSS和CSRF&quot;&gt;&lt;a href=&quot;#浅谈XSS和CSRF&quot; class=&quot;headerlink&quot; title=&quot;浅谈XSS和CSRF&quot;&gt;&lt;/a&gt;浅谈XSS和CSRF&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;XSS和CSRF是前端比较常见的两种攻击方式，我们作为一个学习者，
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>TLS握手过程</title>

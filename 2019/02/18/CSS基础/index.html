@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>CSS基础知识点 | Joe的个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="CSS基础 目录 CSS选择器与权重 CSS选择器是如何解析的 display,position 参数  正文CSS选择器与权重 CSS选择器有哪些？通常来讲，有id选择器，类（伪类）选择器，元素（伪元素）选择器，属性选择器，和其他。 他们的权重是如何计算的？权重的大小排列为从 id选择器(A级) 到 类（伪类）选择器；属性选择器（B级） 到 元素（伪元素）选择器（C级）到 其他选择器（D级）。也">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS基础知识点">
+<meta property="og:url" content="http://yoursite.com/2019/02/18/CSS基础/index.html">
+<meta property="og:site_name" content="Joe的个人博客">
+<meta property="og:description" content="CSS基础 目录 CSS选择器与权重 CSS选择器是如何解析的 display,position 参数  正文CSS选择器与权重 CSS选择器有哪些？通常来讲，有id选择器，类（伪类）选择器，元素（伪元素）选择器，属性选择器，和其他。 他们的权重是如何计算的？权重的大小排列为从 id选择器(A级) 到 类（伪类）选择器；属性选择器（B级） 到 元素（伪元素）选择器（C级）到 其他选择器（D级）。也">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-18T15:01:44.827Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS基础知识点">
+<meta name="twitter:description" content="CSS基础 目录 CSS选择器与权重 CSS选择器是如何解析的 display,position 参数  正文CSS选择器与权重 CSS选择器有哪些？通常来讲，有id选择器，类（伪类）选择器，元素（伪元素）选择器，属性选择器，和其他。 他们的权重是如何计算的？权重的大小排列为从 id选择器(A级) 到 类（伪类）选择器；属性选择器（B级） 到 元素（伪元素）选择器（C级）到 其他选择器（D级）。也">
+    
+        <link rel="alternate" type="application/atom+xml" title="Joe的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Joe Lu</h5>
+          <a href="mailto:790639771@qq.com" title="790639771@qq.com" class="mail">790639771@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/luxuryLu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CSS基础知识点</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CSS基础知识点</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-02-18T15:00:41.301Z" itemprop="datePublished" class="page-time">
+  2019-02-18
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CSS基础"><span class="post-toc-number">1.</span> <span class="post-toc-text">CSS基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#目录"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">目录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#正文"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">正文</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#CSS选择器与权重"><span class="post-toc-number">1.0.2.1.</span> <span class="post-toc-text">CSS选择器与权重</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#CSS选择器是如何解析的"><span class="post-toc-number">1.0.2.2.</span> <span class="post-toc-text">CSS选择器是如何解析的</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#盒模型"><span class="post-toc-number">1.0.2.3.</span> <span class="post-toc-text">盒模型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#display参数-position参数"><span class="post-toc-number">1.0.2.4.</span> <span class="post-toc-text">display参数/position参数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#display参数"><span class="post-toc-number">1.0.2.4.1.</span> <span class="post-toc-text">display参数</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#position参数"><span class="post-toc-number">1.0.2.4.2.</span> <span class="post-toc-text">position参数</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#页面布局"><span class="post-toc-number">1.0.2.5.</span> <span class="post-toc-text">页面布局</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#两栏-amp-三栏布局"><span class="post-toc-number">1.0.2.5.1.</span> <span class="post-toc-text">两栏&amp;三栏布局</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#圣杯-amp-双飞翼布局"><span class="post-toc-number">1.0.2.5.2.</span> <span class="post-toc-text">圣杯&amp;双飞翼布局</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#层叠上下文"><span class="post-toc-number">1.0.2.6.</span> <span class="post-toc-text">层叠上下文</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#水平垂直居中"><span class="post-toc-number">1.0.2.7.</span> <span class="post-toc-text">水平垂直居中</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#flex布局"><span class="post-toc-number">1.0.2.8.</span> <span class="post-toc-text">flex布局</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-CSS基础"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CSS基础知识点</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-18 23:00:41" datetime="2019-02-18T15:00:41.301Z"  itemprop="datePublished">2019-02-18</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="CSS基础"><a href="#CSS基础" class="headerlink" title="CSS基础"></a>CSS基础</h1><hr>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ol>
+<li>CSS选择器与权重</li>
+<li>CSS选择器是如何解析的</li>
+<li>display,position 参数</li>
+</ol>
+<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><h4 id="CSS选择器与权重"><a href="#CSS选择器与权重" class="headerlink" title="CSS选择器与权重"></a>CSS选择器与权重</h4><hr>
+<p>CSS选择器有哪些？通常来讲，有id选择器，类（伪类）选择器，元素（伪元素）选择器，属性选择器，和其他。</p>
+<p>他们的权重是如何计算的？<br>权重的大小排列为从 id选择器(A级) 到 类（伪类）选择器；属性选择器（B级） 到 元素（伪元素）选择器（C级）到 其他选择器（D级）。<br>也就是说哪怕有100个类选择器，它的权重依旧没有id选择器高。在id选择器 权重相同的情况下，比较类选择器，属性选择器的权重大小，也就是B级的大小。在类，属性，伪类选择器权重相同的情况下，比较元素选择器，依次往下，比较其他选择器。</p>
+<p>除此以外</p>
+<ol>
+<li>！important优先级最高</li>
+<li>内联样式比外部样式优先级高</li>
+<li>相同权重的情况下后写的样式覆盖之前的</li>
+</ol>
+<h4 id="CSS选择器是如何解析的"><a href="#CSS选择器是如何解析的" class="headerlink" title="CSS选择器是如何解析的"></a>CSS选择器是如何解析的</h4><hr>
+<p>css选择器是从右往左解析的，这是出于性能的考虑，如果从左往右解析，就需要记住大量的元素。从右往左的话，只需要从一个较小的集合往左依次验证。</p>
+<h4 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h4><hr>
+<p>盒模型其实是CSS学习的一个重要基础。<br>盒模型是页面渲染时，dom元素在页面上的布局模型。<br>一个盒子包括margin(左右)+border(左右)+padding(左右)+content。<br>在标准盒模型下我们对width进行设置，其实设置的是content的宽度。而标准盒模型也就是content-box。<br>而IE盒模型就是border-box，也就是说在这盒模型下设置width,其实设置的是border(左右)+padding(左右)+content的宽度。<br>我们想使用不同的盒模型可以使用box-sizing属性去设置。</p>
+<h4 id="display参数-position参数"><a href="#display参数-position参数" class="headerlink" title="display参数/position参数"></a>display参数/position参数</h4><hr>
+<p>display属性确定元素的显示类型<br>position属性确定元素的位置</p>
+<h5 id="display参数"><a href="#display参数" class="headerlink" title="display参数"></a>display参数</h5><p><a href="https://juejin.im/entry/587c46cc1b69e6006bf1e715" target="_blank" rel="noopener">display属性</a><br>常见的display参数有block,inline,inline-block,none,list-item,table,table-cell,flex,grid等等。<br>将display设置为block,那么这个元素就会表现得像块级元素，这也是div等块级元素标签的默认值。默认会独占一行，宽度默认占满父级元素的百分之百。可以正常设置宽高。<br>display设置为inline,它用来设置行内元素属性。不会单独占一行，设置宽高无效，宽度高度由内容撑开。<br>display: inline-block。行内块级元素。可以让元素既可以像块级元素一样设置宽高，又不会独占一行，比如input输入框，就是inline-block。</p>
+<p>display: none用来隐藏某个元素。经常会问到display:none和visibility:hidden的区别</p>
+<p>display:list-item可以将元素作为列表显示，display:table和table-cell用于表布局。display:flex是一种很好用的布局，因为在移动端支持较好所以在移动端经常使用。display: grid，网格布局是更加新的一种布局方式。</p>
+<p>display是页面布局的一个重要属性，我们做页面布局除了使用浮动以及绝对定位，使用display的一些布局（inline-block布局，table布局，flex布局，grid布局）是非常方便的。</p>
+<h5 id="position参数"><a href="#position参数" class="headerlink" title="position参数"></a>position参数</h5><hr>
+<p>常见position属性的参数有static,relative,absolute,fixed。还有可能会问到sticky。<br>static是默认值，它不会被特殊的定位。它是遵循标准文档流的。</p>
+<p>relative会根据top,bottom,left,right,在自身原来的位置上，做相应的偏移。其他元素的位置不会受其影响。他也是遵循标准文档流，不会改变它原本在文档流的占位空间。</p>
+<p>fixed会相对于可视区域/视窗来定位，也是通过top,bottom,left,right来具体定位。它脱离标准文档流，不影响标准文档流元素的布局。</p>
+<p>absolute与fixed相类似，只不过它不是根据可视区域来定位，而是根据离自己最近的”positioned”的祖父元素来定位，如果没找到，则相对于body元素。”positioned”元素即position不为static的元素。absolute也是脱离标准文档流，不影响标准文档流元素的布局。但是如果没有设置top,bottom,left,right四个属性中的任意一个的话，它的表现就与relative相同，遵循标准文档流。</p>
+<p>另：float也是脱离标准文档流，不影响标准文档流的布局，但是会影响文字流，也就是说虽然不影响其他元素的布局，但是文字会包裹或者说避开它，毕竟float设计出来就是用于这样的用途的。</p>
+<p>作为前端学习者，我们也需要对position:sticky这样的属性有一些了解。它能很好的实现一个滑动固顶的一个效果。什么意思呢，就是现在我们点开我们的外卖APP，点击商家的商品详情页，商品列表上方有一个导航。平时它表现得和relative差不多，当我们像下滑动一段距离得时候，我们可以看见我们的导航栏黏在了上方，表现得像一个fixed得元素。目前该属性firefox和safari已经支持，chrome还未支持。</p>
+<h4 id="页面布局"><a href="#页面布局" class="headerlink" title="页面布局"></a>页面布局</h4><hr>
+<p>页面布局也是前端面试过程中常考的一个点。考察了你的基本功，同时考察了你对新的布局方式是否了解。<br>常见的两栏/三栏布局 我们可以使用</p>
+<ol>
+<li>float + margin</li>
+<li>绝对定位</li>
+<li>table布局</li>
+<li>flex布局</li>
+<li>grid布局</li>
+</ol>
+<p>注意在写float方式的三栏布局的时候我们需要将float:right的元素写在中间那个元素的前面。因为浮动元素尽量向上靠，如果right写在center的后面，center中的内容就会阻碍浮动元素，浮动元素就无法碰到容器的顶部。显示起来就不是我们想要的结果。<br>对于flex布局和grid布局，毫无疑问它们是以后的标准，我们肯定要学习它，更何况flex已经在移动端用的很多了。</p>
+<h5 id="两栏-amp-三栏布局"><a href="#两栏-amp-三栏布局" class="headerlink" title="两栏&amp;三栏布局"></a>两栏&amp;三栏布局</h5><p>这里记录下自己写的两栏布局以及三栏布局的代码<br>因为观看原因，放到文章的最后</p>
+<h5 id="圣杯-amp-双飞翼布局"><a href="#圣杯-amp-双飞翼布局" class="headerlink" title="圣杯&amp;双飞翼布局"></a>圣杯&amp;双飞翼布局</h5><p>圣杯双飞翼布局也是重要的考点。<br>有两位前辈写的很好，这里放出它们的链接。<br>一位总结了它们的起源以及一些区别<a href="https://www.zhihu.com/question/21504052" target="_blank" rel="noopener">圣杯双飞翼</a><br>一位带领我们去实现这两个布局<a href="https://theqwang.github.io/2016/01/08/%E6%B5%85%E6%9E%90%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/" target="_blank" rel="noopener">圣杯双飞翼</a><br>我自己代码也会放到最后</p>
+<h4 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h4><hr>
+<p>这里给出一位前辈的文章链接，写的很好，感谢前辈。<br><a href="https://juejin.im/post/5b876f86518825431079ddd6" target="_blank" rel="noopener">彻底搞懂CSS层叠上下文、层叠等级、层叠顺序、z-index</a></p>
+<h4 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h4><hr>
+<p><a href="https://juejin.im/post/5b9a4477f265da0ad82bf921" target="_blank" rel="noopener">水平垂直居中</a></p>
+<h4 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h4><hr>
+<p><a href="https://juejin.im/post/58e3a5a0a0bb9f0069fc16bb" target="_blank" rel="noopener">flex布局</a></p>
+<p>两栏布局<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        *&#123;</span><br><span class="line">            margin: 0;</span><br><span class="line">            padding: 0;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            min-height: 100px;</span><br><span class="line">            margin:20px 0;</span><br><span class="line">        &#125;</span><br><span class="line">        .layout div&#123;</span><br><span class="line">            min-height: 100px;</span><br><span class="line">        &#125;</span><br><span class="line">        .left &#123;</span><br><span class="line">            background: red;</span><br><span class="line">        &#125;</span><br><span class="line">        .main &#123;</span><br><span class="line">            background: yellow;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;section class=&quot;layout float&quot;&gt;</span><br><span class="line">        &lt;style&gt;</span><br><span class="line">            .layout.float .left&#123;</span><br><span class="line">                width: 200px;</span><br><span class="line">                float: left;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout.float .main&#123;</span><br><span class="line">                margin-left: 200px;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">            asdasddddddddddddddddddddddddd</span><br><span class="line">            asdasddddddddddddddddddddddddd</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    &lt;section class=&quot;layout absolute&quot;&gt;</span><br><span class="line">        &lt;style&gt;</span><br><span class="line">            .layout.absolute&#123;</span><br><span class="line">                position: relative;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            .layout.absolute .left&#123;</span><br><span class="line">                position: absolute;</span><br><span class="line">                left: 0;</span><br><span class="line">                width: 200px;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout.absolute .main&#123;</span><br><span class="line">                left: 200px;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">            asdasddddddddddddddddddddddddd</span><br><span class="line">            asdasddddddddddddddddddddddddd</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section class=&quot;layout flex&quot;&gt;</span><br><span class="line">            &lt;style&gt;</span><br><span class="line">                .layout.flex&#123;</span><br><span class="line">                    display: flex;</span><br><span class="line">                &#125;</span><br><span class="line">    </span><br><span class="line">                .layout.flex .left&#123;</span><br><span class="line">                    width: 200px;</span><br><span class="line">                &#125;</span><br><span class="line">                .layout.flex .main&#123;</span><br><span class="line">                    flex: 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &lt;/style&gt;</span><br><span class="line">            &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">                asdasddddddddddddddddddddddddd</span><br><span class="line">                asdasddddddddddddddddddddddddd</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section class=&quot;layout table&quot;&gt;</span><br><span class="line">            &lt;style&gt;</span><br><span class="line">                .layout.table&#123;</span><br><span class="line">                    display: table;</span><br><span class="line">                &#125;</span><br><span class="line">    </span><br><span class="line">                .layout.table .left&#123;</span><br><span class="line">                    display: table-cell;</span><br><span class="line">                    width: 200px;</span><br><span class="line">                &#125;</span><br><span class="line">                .layout.table .main&#123;</span><br><span class="line">                    display: table-cell;</span><br><span class="line">                &#125;</span><br><span class="line">            &lt;/style&gt;</span><br><span class="line">            &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">                asdasddddddddddddddddddddddddd</span><br><span class="line">                asdasddddddddddddddddddddddddd</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section class=&quot;layout grid&quot;&gt;</span><br><span class="line">            &lt;style&gt;</span><br><span class="line">                .layout.grid&#123;</span><br><span class="line">                    display: grid;</span><br><span class="line">                    grid-template-rows: 100px;</span><br><span class="line">                    grid-template-columns: 200px auto;</span><br><span class="line">                &#125;</span><br><span class="line">            &lt;/style&gt;</span><br><span class="line">            &lt;div class=&quot;left&quot;&gt;grid&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">                asdasddddddddddddddddddddddddd</span><br><span class="line">                asdasddddddddddddddddddddddddd</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>三栏布局<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">            *&#123;</span><br><span class="line">                margin: 0;</span><br><span class="line">                padding: 0;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout &#123;</span><br><span class="line">                margin-top: 20px;</span><br><span class="line">                width: 100%;</span><br><span class="line">                height: 100px;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout div&#123;</span><br><span class="line">                min-height: 100px;</span><br><span class="line">            &#125;</span><br><span class="line">        </span><br><span class="line">            .left &#123;</span><br><span class="line">                width: 300px;</span><br><span class="line">                background: red;</span><br><span class="line">            &#125;</span><br><span class="line">            .right &#123;</span><br><span class="line">                width: 300px;</span><br><span class="line">                background: blue;</span><br><span class="line">            &#125;</span><br><span class="line">            .center&#123;</span><br><span class="line">                background: yellow;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;section class=&quot;layout float&quot;&gt;</span><br><span class="line">        &lt;style&gt;</span><br><span class="line">            .layout.float .left &#123;</span><br><span class="line">                float: left;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout.float .right &#123;</span><br><span class="line">                float: right;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout.float .center &#123;</span><br><span class="line">                margin-left: 300px;</span><br><span class="line">                margin-right: 300px;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            浮动</span><br><span class="line">            浮动</span><br><span class="line">            浮动</span><br><span class="line">            浮动</span><br><span class="line">            浮动</span><br><span class="line">            浮动</span><br><span class="line">            浮动</span><br><span class="line">            浮动</span><br><span class="line">            浮动</span><br><span class="line">            浮动</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section class=&quot;layout absolute&quot;&gt;</span><br><span class="line">        &lt;style&gt;</span><br><span class="line">            .layout.absolute &#123;</span><br><span class="line">                position: relative;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout.absolute .left &#123;</span><br><span class="line">                position: absolute;</span><br><span class="line">                left: 0;</span><br><span class="line">                width: 300px;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout.absolute .right &#123;</span><br><span class="line">                position: absolute;</span><br><span class="line">                right: 0;</span><br><span class="line">                width: 300px;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout.absolute .center &#123;</span><br><span class="line">                position: absolute;</span><br><span class="line">                left: 300px;</span><br><span class="line">                right: 300px;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">            绝对定位</span><br><span class="line">            绝对定位</span><br><span class="line">            绝对定位</span><br><span class="line">            绝对定位</span><br><span class="line">            绝对定位</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section class=&quot;layout flex&quot;&gt;</span><br><span class="line">        &lt;style&gt;</span><br><span class="line">            .layout.flex &#123;</span><br><span class="line">                display: flex;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout.flex .left&#123;</span><br><span class="line">                width: 300px;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout.flex .right&#123;</span><br><span class="line">                width: 300px;</span><br><span class="line">            &#125;</span><br><span class="line">            .layout.flex .center&#123;</span><br><span class="line">                flex: 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">                flex</span><br><span class="line">                flex</span><br><span class="line">                flex</span><br><span class="line">                flex</span><br><span class="line">                flex</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section class=&quot;layout table&quot;&gt;</span><br><span class="line">            &lt;style&gt;</span><br><span class="line">                .layout.table &#123;</span><br><span class="line">                    display: table;</span><br><span class="line">                &#125;</span><br><span class="line">                .layout.table .left&#123;</span><br><span class="line">                    display: table-cell;</span><br><span class="line">                    width: 300px;</span><br><span class="line">                &#125;</span><br><span class="line">                .layout.table .right&#123;</span><br><span class="line">                    display: table-cell;</span><br><span class="line">                    width: 300px;</span><br><span class="line">                &#125;</span><br><span class="line">                .layout.table .center&#123;</span><br><span class="line">                    display: table-cell;</span><br><span class="line">                &#125;</span><br><span class="line">            &lt;/style&gt;</span><br><span class="line">            &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">                    table</span><br><span class="line">                    table</span><br><span class="line">                    table</span><br><span class="line">                    table</span><br><span class="line">                    table</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section class=&quot;layout grid&quot;&gt;</span><br><span class="line">            &lt;style&gt;</span><br><span class="line">                .layout.grid &#123;</span><br><span class="line">                    display: grid;</span><br><span class="line">                    grid-template-rows: 100px;</span><br><span class="line">                    grid-template-columns: 300px auto 300px;</span><br><span class="line">                &#125;</span><br><span class="line">            &lt;/style&gt;</span><br><span class="line">            &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;center&quot;&gt;</span><br><span class="line">                    grid</span><br><span class="line">                    grid</span><br><span class="line">                    grid</span><br><span class="line">                    grid</span><br><span class="line">                    grid</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>圣杯双飞翼布局<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;section&gt;</span><br><span class="line">        &lt;style&gt;</span><br><span class="line">            /* *&#123;</span><br><span class="line">                margin: 0;</span><br><span class="line">                padding: 0;</span><br><span class="line">            &#125;</span><br><span class="line">            .header&#123;</span><br><span class="line">                height: 100px;</span><br><span class="line">                background: blue;</span><br><span class="line">            &#125;</span><br><span class="line">            .footer&#123;</span><br><span class="line">                height: 100px;</span><br><span class="line">                background: blue;</span><br><span class="line">            &#125;</span><br><span class="line">            .main&#123;</span><br><span class="line">                box-sizing: border-box;</span><br><span class="line">                width: 100%;</span><br><span class="line">                padding: 0 100px;</span><br><span class="line">                overflow: hidden;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            .main .content&#123;</span><br><span class="line">                float: left;</span><br><span class="line">                width: 100%;</span><br><span class="line">                background: yellow;</span><br><span class="line">                height: 100px;</span><br><span class="line">            &#125;</span><br><span class="line">            .main .left&#123;</span><br><span class="line">                float: left;</span><br><span class="line">                width: 100px;</span><br><span class="line">                background: gray;</span><br><span class="line">                height: 100px;</span><br><span class="line">            &#125;</span><br><span class="line">            .main .right&#123;</span><br><span class="line">                float: left;</span><br><span class="line">                width: 100px;</span><br><span class="line">                background: grey;</span><br><span class="line">                height: 100px;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            .main .left&#123;</span><br><span class="line">                margin-left: -100%;</span><br><span class="line">            &#125;</span><br><span class="line">            .main .right&#123;</span><br><span class="line">                margin-left: -100px;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            .main .left&#123;</span><br><span class="line">                position: relative;</span><br><span class="line">                left: -100px;</span><br><span class="line">                z-index: 99;</span><br><span class="line">            &#125;</span><br><span class="line">            .main .right&#123;</span><br><span class="line">                position: relative;</span><br><span class="line">                right: -100px;</span><br><span class="line">            &#125; */</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">        &lt;div class=&quot;header&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;content&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section style=&quot;margin-top:10px&quot;&gt;</span><br><span class="line">        &lt;style&gt;</span><br><span class="line">            *&#123;</span><br><span class="line">                margin: 0;</span><br><span class="line">                padding: 0;</span><br><span class="line">            &#125;</span><br><span class="line">            .header&#123;</span><br><span class="line">                height: 100px;</span><br><span class="line">                background: blue;</span><br><span class="line">            &#125;</span><br><span class="line">            .footer&#123;</span><br><span class="line">                height: 100px;</span><br><span class="line">                background: blue;                </span><br><span class="line">            &#125;</span><br><span class="line">            .main&#123;</span><br><span class="line">                width: 100%;</span><br><span class="line">                overflow: hidden;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            .content-wrapper&#123;</span><br><span class="line">                float: left;</span><br><span class="line">                width: 100%;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            .content&#123;</span><br><span class="line">                background: yellow;</span><br><span class="line">                height: 100px;</span><br><span class="line">                margin-left: 100px;</span><br><span class="line">                margin-right: 100px;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            .left&#123;</span><br><span class="line">                float: left;</span><br><span class="line">                width: 100px;</span><br><span class="line">                height: 100px;</span><br><span class="line">                background: grey;</span><br><span class="line">                margin-left: -100%;</span><br><span class="line">            &#125;</span><br><span class="line">            .right&#123;</span><br><span class="line">                float: left;</span><br><span class="line">                width: 100px;</span><br><span class="line">                height: 100px;</span><br><span class="line">                background: green;</span><br><span class="line">                margin-left: -100px;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">        &lt;div class=&quot;header&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;content-wrapper&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;content&quot;&gt;1213132132232132123132123123132123132&lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-02-18T15:01:44.827Z" itemprop="dateUpdated">2019-02-18 23:01:44</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/02/18/CSS基础/" target="_blank" rel="external">http://yoursite.com/2019/02/18/CSS基础/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Joe Lu">
+            Joe Lu
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/02/18/CSS基础/&title=《CSS基础知识点》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/18/CSS基础/&title=《CSS基础知识点》 — Joe的个人博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/18/CSS基础/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CSS基础知识点》 — Joe的个人博客&url=http://yoursite.com/2019/02/18/CSS基础/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/18/CSS基础/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/16/浅谈XSS和CSRF/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">浅谈XSS和CSRF</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Joe Lu &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/02/18/CSS基础/&title=《CSS基础知识点》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/02/18/CSS基础/&title=《CSS基础知识点》 — Joe的个人博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/02/18/CSS基础/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CSS基础知识点》 — Joe的个人博客&url=http://yoursite.com/2019/02/18/CSS基础/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/02/18/CSS基础/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABtUlEQVR42u3aQY7DIBAEwPz/01lpr9GSbiYmXqk4WYoF5RxazMDjEY/n72jffx2vvz6uGLi4uGPuczn2uOtVXudMDLi4uOe56/BqF1sHVv534OLi3p+7XnIyJy4u7v/l5sS993Fxce/GzRsZeRjlW59LajVcXNwBt22YXvF8YX8XFxe35D7LkW+MEkq9Oi4u7hHuemuSLND+uteQfeQT4eLijrnruMnjrC1a2nVxcXFPcucx1DY9J+0VXFzck9zkwCOPsMmRSXJ1AxcX97vcljhpiBSXPHBxcY9w98qYdpuy1zzd7Lbi4uJezJ1f1Jg3SnBxce/AbcuS/Ih0Mj8uLu5JblLAtNuXvCjCxcW9G7fdfKyf2yDLGyu4uLgnuW3hEZ3Wfijg3vR3cXFxL+PmZcxeDE1CEBcX97vcSUGSH4vmR7BvggwXF/cINx9Ji6QtpYrPwMXFPcKdFy2b5zblZ28eweLi4g648/CalEP55gkXF/c8t21utnG2maC4uLi35yYBlM+cfOqfN8hwcXFvzJ2UQ+08uLi457ltuLSXJ9rg+0BbBBcXd8CdVxw5ehKUuLi4R7g/1zgGHOAZ+8cAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

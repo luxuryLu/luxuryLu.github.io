@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Joe的个人博客">
 <meta property="og:description" content="2019年7月总结标签（空格分隔）： 前端 总结  闲谈 回过头来才发现自己已经半年没写博客了，自从开学之后，不是在面试，就是在看面经。等拿到offer之后，又一门心思扎在毕业设计上。回想起来，因为毕业设计和前端还是不属于一个领域，所以那时候学的东西也忘得差不多了。大数据，流计算，Apache Flink，还是属于大数据方向的。当时我还想着这也是留给自己的一个可以选择的方向，现在想起来就觉得其实还">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-10T17:32:53.451Z">
+<meta property="og:updated_time" content="2019-08-17T15:57:34.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019年7月总结">
 <meta name="twitter:description" content="2019年7月总结标签（空格分隔）： 前端 总结  闲谈 回过头来才发现自己已经半年没写博客了，自从开学之后，不是在面试，就是在看面经。等拿到offer之后，又一门心思扎在毕业设计上。回想起来，因为毕业设计和前端还是不属于一个领域，所以那时候学的东西也忘得差不多了。大数据，流计算，Apache Flink，还是属于大数据方向的。当时我还想着这也是留给自己的一个可以选择的方向，现在想起来就觉得其实还">
@@ -132,7 +132,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -218,9 +218,11 @@
 <li>微信Web开发者工具<br>emmm….哎，自行感受吧，希望之后它会越来越好</li>
 </ol>
 <h3 id="业务场景总结-tabbar-列表页"><a href="#业务场景总结-tabbar-列表页" class="headerlink" title="业务场景总结(tabbar + 列表页)"></a>业务场景总结(tabbar + 列表页)</h3><hr>
-<p>一个tabbar在加上一个列表页list，是一个经典的电商场景。<br>就这么一个经典的场景也有很多坑，之前百亿项目H5的同事也和我们分享过他们遇到的坑。我在做新项目的时候确实也遇到了许多相同的坑。<br>本来是只写这一部分的，写着写着又写了很多其它的总结，这一部分先留着，明天再写吧。<br>//TO DO</p>
+<p>一个tabbar在加上一个列表页list，是一个经典的电商场景。<br>就这么一个经典的场景也有很多坑，之前百亿项目H5的同事也和我们分享过他们遇到的坑。我在做新项目的时候确实也遇到了许多相同的坑。<br>本来是只写这一部分的，写着写着又写了很多其它的总结，这一部分先留着，明天再写吧。<br>// 更新于2019/8/17<br>业务场景总结<br>tabbar＋长列表<br>一个滑动吸顶的tabbar加上一个长列表是电商中长常见的一个场景。</p>
+<p>但是微信小程序中却不适合做吸顶。为什么？因为小程序中的胶囊是我们无法去做修改的，我们无法控制胶囊的样式(仅黑白两种颜色)，也不能控制胶囊的显示与否，它占据了小程序的右上角。<br>一定，想要做吸顶，tab栏右侧需要留出一定的距离给胶囊，但是这样在非吸顶状态下样式也是非常奇怪。<br>目前的一个设计方案就是放弃吸顶，直接让tab栏固定在头部，右侧留出空间给胶囊。</p>
+<p>更早的一个设计方案是tabbar固定在胶囊的下方，胶囊这一行仅仅做一个颜色的填充，(可能左上角会有一个icon承担一些功能)。<br>这种’滑动固定’而非’固顶’，一个是造成了列表展示区的进一步缩小；另一方面，在快速滑动，scroll事件未触发，导致 tabbar上方颜色填充块还未显示出来时，肉眼可以看见列表的内容快速的向上划过去，会造成闪一下的视觉效果。</p>
 <hr>
-<p>– 写于2019.8.11 </p>
+<p>– 写于2019.8.11<br>– 更新于2019/8/17</p>
 
         </div>
 
@@ -229,7 +231,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2019-08-10T17:32:53.451Z" itemprop="dateUpdated">2019-08-11 01:32:53</time>
+    Last updated: <time datetime="2019-08-17T15:57:34.605Z" itemprop="dateUpdated">2019-08-17 23:57:34</time>
 </span><br>
 
 
@@ -308,7 +310,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/26/2019年8月小程序开发总结/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">2019年8月小程序开发要点</h4>
+      </a>
+    </div>
   
 
   
@@ -390,7 +399,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

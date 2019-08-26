@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>2019年8月小程序开发要点 | Joe的个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="2019年8月小程序开发要点总结标签（空格分隔）： 前端 总结 小程序  要点记录 性能：现象：之前在商详基础内容开发完成之后，明显能感觉到商详页加载过慢，尤其是加价面板，能够清晰地感知到图片的加载过程（图片三分之一三分之一的下载补全）。后期加上视频功能之后，视频的加载也十分慢，而且容易出现卡顿（4G下）。方法：借助腾讯云文档，对图片和视频进行压缩图片质量压缩：https://cloud.tenc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019年8月小程序开发要点">
+<meta property="og:url" content="http://yoursite.com/2019/08/26/2019年8月小程序开发总结/index.html">
+<meta property="og:site_name" content="Joe的个人博客">
+<meta property="og:description" content="2019年8月小程序开发要点总结标签（空格分隔）： 前端 总结 小程序  要点记录 性能：现象：之前在商详基础内容开发完成之后，明显能感觉到商详页加载过慢，尤其是加价面板，能够清晰地感知到图片的加载过程（图片三分之一三分之一的下载补全）。后期加上视频功能之后，视频的加载也十分慢，而且容易出现卡顿（4G下）。方法：借助腾讯云文档，对图片和视频进行压缩图片质量压缩：https://cloud.tenc">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-26T15:30:58.255Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019年8月小程序开发要点">
+<meta name="twitter:description" content="2019年8月小程序开发要点总结标签（空格分隔）： 前端 总结 小程序  要点记录 性能：现象：之前在商详基础内容开发完成之后，明显能感觉到商详页加载过慢，尤其是加价面板，能够清晰地感知到图片的加载过程（图片三分之一三分之一的下载补全）。后期加上视频功能之后，视频的加载也十分慢，而且容易出现卡顿（4G下）。方法：借助腾讯云文档，对图片和视频进行压缩图片质量压缩：https://cloud.tenc">
+    
+        <link rel="alternate" type="application/atom+xml" title="Joe的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Joe Lu</h5>
+          <a href="mailto:790639771@qq.com" title="790639771@qq.com" class="mail">790639771@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/luxuryLu" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">2019年8月小程序开发要点</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">2019年8月小程序开发要点</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-26T15:27:28.901Z" itemprop="datePublished" class="page-time">
+  2019-08-26
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2019年8月小程序开发要点总结"><span class="post-toc-number">1.</span> <span class="post-toc-text">2019年8月小程序开发要点总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#要点记录"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">要点记录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#导航栏"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">导航栏</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方案和遇到的问题"><span class="post-toc-number">1.2.0.1.</span> <span class="post-toc-text">方案和遇到的问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#打算"><span class="post-toc-number">1.2.0.2.</span> <span class="post-toc-text">打算</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-2019年8月小程序开发总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">2019年8月小程序开发要点</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-26 23:27:28" datetime="2019-08-26T15:27:28.901Z"  itemprop="datePublished">2019-08-26</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="2019年8月小程序开发要点总结"><a href="#2019年8月小程序开发要点总结" class="headerlink" title="2019年8月小程序开发要点总结"></a>2019年8月小程序开发要点总结</h1><p>标签（空格分隔）： 前端 总结 小程序</p>
+<hr>
+<h2 id="要点记录"><a href="#要点记录" class="headerlink" title="要点记录"></a>要点记录</h2><ol>
+<li>性能：<br>现象：<br>之前在商详基础内容开发完成之后，明显能感觉到商详页加载过慢，尤其是加价面板，能够清晰地感知到图片的加载过程（图片三分之一三分之一的下载补全）。<br>后期加上视频功能之后，视频的加载也十分慢，而且容易出现卡顿（4G下）。<br>方法：<br>借助腾讯云文档，对图片和视频进行压缩<br>图片质量压缩：<a href="https://cloud.tencent.com/document/product/460/36544" target="_blank" rel="noopener">https://cloud.tencent.com/document/product/460/36544</a><br>视频质量压缩：<a href="https://cloud.tencent.com/document/product/314/33747" target="_blank" rel="noopener">https://cloud.tencent.com/document/product/314/33747</a><br>重要BUG修复:<br>修复商详页好评图片无法显示的BUG（之前为了性能使用了webp格式，webp格式在ios中无法解析,考虑过只在安卓使用webp，但是部分安卓机型也有不支持webp的情况）</li>
+<li>小程序分享相关问题<br>表现：<br>出现过一个BUG，从商详页分享出去的的小程序，接受分享的人点开就无法回到首页（左上角返回icon）<br>原因：<br>左上角返回icon调用的方法是WX.navigationBack, 返回上一个页面 ，从分享点开的用户，页面栈此时只有商详页一个页面。<br>解决方法：<br>控制用户分享时，只分享首路径，同时带上相应参数。用户从分享进入小程序，进入index页面的onLoad生命周期钩子，监测到相应参数，再跳转到商详页。</li>
+</ol>
+<p>这个Bug在 拥有二级页面，需要分享 的小程序中应该都会出现。所以如果之后还有新的小程序项目，很有可能碰见相同问题，记录下来，之后遇到相似问题就方便许多。</p>
+<h2 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h2><hr>
+<p>自定义导航栏几乎每个页面都会用到，关于导航栏在不同机型中的高度适配问题，前前后后也是修改了很多次。<br>目前主要自定义导航栏的使用场景主要包括四种（注：小程序右上角的胶囊无法取消显示）</p>
+<ol>
+<li>拥有多个tab用于切换（首页商品流）</li>
+<li>包含一个自定义的返回icon (商详页)</li>
+<li>包含一个自定义的返回icon，以及一个title图片 (模板页)</li>
+<li>仅显示一个背景色 (profile)</li>
+</ol>
+<p>除了一个相关H5页面的展示，几乎每一个页面都会用到自定义导航栏。<br>自定义导航栏的出现频率实在是很高，相关高度适配工作也很繁琐，在团队开发的时候，也可能会因此编写重复的代码。<br>因此感觉把自定义导航栏抽出作为一个公用组件是很有必要的。</p>
+<h4 id="方案和遇到的问题"><a href="#方案和遇到的问题" class="headerlink" title="方案和遇到的问题"></a>方案和遇到的问题</h4><hr>
+<p>目前手机屏幕众多，像刘海屏，水滴屏，都会影响我们自定义导航栏距离顶部的距离。</p>
+<ol>
+<li><p>safeArea API(属于 wx.getSystemInfo, wx.getSystemInfoSync)<br>考虑过使用小程序的safeArea API 在竖屏正方向下的安全区域, 然而在实验后发现该API在我自己手机上就出现了问题。<br>小米8，刘海屏。 微信小程序safeArea API返回 的安全区域 的TOP(安全区域左上角纵坐标)竟然为 0<br>{<br>width:  393<br>right:  393<br>top:    0<br>left:   0<br>bottom: 818<br>height: 818<br>}<br>iphone X 中SafeArea bottom也是显示的和screenHeight，windowHeight一样高</p>
+</li>
+<li><p>wx.getMenuButtonBoundingClientRect() API<br>该API可以获取右上角胶囊的位置，借助该API也许可以完成导航栏高度的自适应<br>然而在浏览 微信开放社区之后，发现该API会经常性的出现bug，包括<br>Ios设备获取胶囊信息全部为0；真机和开发者工具数据不一致等等问题。<br>说明该API目前还是不可信的，如果导航栏的高度依赖该API，很可能样式会出现问题。</p>
+</li>
+<li><p>statusBarHeight API(属于 wx.getSystemInfo, wx.getSystemInfoSync)<br>wx.getSystemInfo, wx.getSystemInfoSync这两个API可以获取 系统状态栏的高度，<br>系统状态栏高度差异是不同机型导航栏高度差异的重要部分（***刘海屏的刘海也在状态栏里面），<br>微信小程序右上角的胶囊高度是固定的（34px），剩下的差异只在胶囊到状态栏底部的距离，以及胶囊底部到导航栏的底部的距离</p>
+</li>
+<li><p>目前发现好货中的适配方式<br>使用 getSystemInfo API 中 model，判断机型属于的大类别，为需要适配的元素动态添加相应的类名（xs,plus,normal），编写相应的css。<br>这种方式的一些问题包括（1）我们需要多次传递相应类名直到相应组件 (2) 各个页面都重复地编写了类似的代码，工作重复，不方便维护<br>（3）andorid 类型众多，很难做一个分类，去编写相应的样式，即使能做分类，在每个页面或相应组件 都编写一遍也不太可行。</p>
+</li>
+</ol>
+<h4 id="打算"><a href="#打算" class="headerlink" title="打算"></a>打算</h4><p>目前打算借助 statusBarHeight 接口，去编写我们的通用的自定义导航栏组件。<br>最主要的原因是 状态栏高度内包含了刘海屏，水滴屏相应 的刘海，水滴的高度。</p>
+<p>由于胶囊顶部到状态栏顶部还有差异，设计时，导航栏内容又往往要求和胶囊居中，所以可能同时也会用到 wx.getMenuButtonBoundingClientRect() API</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-08-26T15:30:58.255Z" itemprop="dateUpdated">2019-08-26 23:30:58</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/08/26/2019年8月小程序开发总结/" target="_blank" rel="external">http://yoursite.com/2019/08/26/2019年8月小程序开发总结/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Joe Lu">
+            Joe Lu
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/26/2019年8月小程序开发总结/&title=《2019年8月小程序开发要点》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/26/2019年8月小程序开发总结/&title=《2019年8月小程序开发要点》 — Joe的个人博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/08/26/2019年8月小程序开发总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《2019年8月小程序开发要点》 — Joe的个人博客&url=http://yoursite.com/2019/08/26/2019年8月小程序开发总结/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/08/26/2019年8月小程序开发总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/11/2019年7月总结/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">2019年7月总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Joe Lu &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/08/26/2019年8月小程序开发总结/&title=《2019年8月小程序开发要点》 — Joe的个人博客&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/08/26/2019年8月小程序开发总结/&title=《2019年8月小程序开发要点》 — Joe的个人博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/08/26/2019年8月小程序开发总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《2019年8月小程序开发要点》 — Joe的个人博客&url=http://yoursite.com/2019/08/26/2019年8月小程序开发总结/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/08/26/2019年8月小程序开发总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwklEQVR42u3aQW7jMBAEwPz/01kgp81BcvdQE+hQOhmGTbMYgMP08Osrfr5/nqv3/3+u3s9HuB/na+PBw8PDG0199jOzad1P9H60fM54eHh427z7YpAMdD+hZ6eezBkPDw/vDbzkdfLky5HMBw8PD+/9vPa//vsC0OYJeHh4eO/htZt4Hubm30qO6YtZCx4eHl7Maxtgb3i92N/Dw8PDO+iqz7b7NgJ+Nub4NT4eHh7eAi8/ELcXre6jhFkzrA0s8PDw8DZ4CSn5V7+NBvLfbcOLX9/Fw8PDW+PNNv3Zwfqpdlr0STw8PLw/5J00xpItvj71x0f8qDDg4eHhPcTLh87Z999qI9p2OfDw8PD2eHl5aItBHg3nhaQIi/Hw8PAWeElwkESryQizTb8Nf+tbY3h4eHglb3ZRoL00MDvr5pHu5Th4eHh4y7zZpny/xbfXrWaXui5njoeHh7fAywtAWwzagPj8ysKHIoeHh4f3EG82ibwxdtL+nx3oLy9d4eHh4S3w8vZVHgfMYov2mkJUGPDw8PDWeG3A2n6mxSQXCC6XDw8PD2+BN9uU84tZ7Tv50uSBBR4eHt4eL29l5Yfp/O7TLKqo1wMPDw/vmDcLGvIR2mD3/OAepdR4eHh4x7w8gJhNdCMUjkoFHh4e3gJvdsietb6ShZs1veqAAw8PD++Al2/WSVjwVKMrj2g/gPHw8PD+kDerKu37UfvqYPnw8PDwNnjtUbgNW/OAI6e2kQoeHh7es7zv8smnNVu4kzg4aoDh4eHhHfNm95fOY4LZRNvLXnh4eHh7vPyHZ82t9sJW3hiL/hh4eHh4a7zZ0bYtHm3oMDuC4+Hh4b2Hl7ep8uU4OftHy4SHh4f3At7samnU4B8VgA+/joeHh7fGOwkj8kNzUgzykhOVBzw8PLwF3qwBll+0mm3xs0I1fPDw8PBS3j+6UPk+91WlPwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
